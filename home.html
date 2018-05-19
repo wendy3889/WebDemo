@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"> 
+<title>testweb</title>
+</head>
+<link href="static/css/user.css" rel="stylesheet" type="text/css" />
+<link href="static/css/bootstrap.css" rel="stylesheet"/>
+<script src="static/js/user.js"></script>  
+<!-- <link href="css/bootstrap/css/bootstrap.css" rel="stylesheet"> -->
+<!-- <style type="text/css">  
+ @import "lib/css/test.css";  
+</style> -->
+
+</head> 
+<body>     
+    <div>  
+    	<!-- 头部代码 -->
+        <div id="header">  
+            <p style="color:white;font-size: 30px">Algorithm Demo</p>
+        </div>  
+
+        <!-- 中间区域代码 -->
+        <div id="middle">  
+            <div class="sidebar">  
+                <ul>
+                    <li>
+                    	<a href="" class="nav-header" target="blank"><i class="fa"></i> 
+                    		团体用语分析
+                    	</a>
+                    </li>
+                    <li>
+                    	<a href="" class="nav-header" target="blank"><i class="fa"></i> 
+                    		Algorithm 2
+                    	</a>
+                    </li>
+                    <li>
+                    	<a href="" class="nav-header" target="blank"><i class="fa"></i> 
+                    		Algorithm 3
+                    	</a>
+                    </li>
+                    <li>
+                    	<a href="" class="nav-header" target="blank"><i class="fa"></i> 
+                    		Algorithm 4
+                    	</a>
+                    </li>
+                </ul>  
+            </div>  
+
+            <!-- 中间区域右上部分 -->
+        	<div class="right-top">  
+                <div class="col-sm-auto">
+          			<label for="keywords" class="col-sm-2 col-form-label">关键词</label>
+          			<input type="text" class="form-control" placeholder="输入关键词，多个词时用空格输入"> 
+        		</div> <br />
+				<!-- <form> -->
+					<div class="in-row">
+        				<div class="col-sm-3">
+          					<input type="text" id='filepath' class="form-control" placeholder="导入号码/文本">
+        				</div>
+        				<div class="dropdown">
+    						<button type="button" class="btn btn-secondary">导入</button>
+    						<div class="dropdown-content">
+    							<input type="file" id="btn_file" style="display:none">
+    							<button type="button" class="btn-white" onclick="F_Open_dialog()">号码</button>
+    							<button type="button" class="btn-white" onclick="F_Open_dialog()">文本</button>
+  							</div>
+  							<!-- <script type="text/javascript">
+  							var obj1 = document.getElementById('btn_file');
+							var obj2 = document.getElementById('filepath');
+							obj2.value = obj1.value;
+							</script> -->
+						</div>
+						&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+						<div class="col-sm-3">
+            				<div class="input-group">
+              					<div class="input-group-prepend">
+                					<div class="input-group-text">From</div>
+              					</div>
+            					<input type="text" class="form-control" placeholder="开始日期">
+            				</div>
+        				</div>
+        				<div class="col-sm-3">
+          					<div class="input-group">
+            					<div class="input-group-prepend">
+              						<div class="input-group-text">TO</div>
+            					</div>
+            					<input type="text" class="form-control" placeholder="结束日期">
+          					</div>
+
+						</div>
+						<button type="button" class="btn btn-secondary">开始分析</button>
+					</div>
+				<!-- </form>	 -->		
+      		</div>
+
+            <!-- 中间区域右下结果显示部分 -->
+            <div class="right-bottom">  
+                    结果展示  
+            </div>  
+
+        <!-- 页脚 -->
+        </div>  
+            <div id="footer" style="text-align:right;">Copyright © synway</div> 
+        </div>  
+
+
+	
+	
+    
+</body>
+</html>
