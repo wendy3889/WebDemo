@@ -140,6 +140,38 @@ ul {
   margin-left: 0px;
 }
 
+
+/*结果展示区*/
+
+.panel {
+    border: 1px solid #ccc;
+    background: white;
+    border-radius: 3px;
+    margin-bottom: 20px;
+    display: block;
+    font-size: 14px;
+    line-height: 1.42857143;
+}
+
+.panel-heading{
+    border-bottom: 1px solid #ccc;
+    border-left: none;
+    color: #333;
+    display: block;
+    margin-bottom: 0px;
+    text-shadow: none;
+    text-transform: none;
+    font-size: 14px;
+    line-height: 1.5em;
+
+    padding: 10px 15px;
+    border-bottom: 1px solid transparent;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+
+    background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #efefef), color-stop(1, #fafafa));
+}
+
 .left {
 	border: 1px solid #ccc;
 	width: 18%;    /*这里是百分比或者像素值，对应下面的center就是百分比或者像素值*/
@@ -150,10 +182,10 @@ ul {
 
 .right-top {
 	width: 82%;  /*这里是百分比或者像素值，对应下面的center就是百分比或者像素值*/
-	height: 31%;
+	height: auto;
 	background: ;
 	float: right;
-	border-bottom: 1.5px solid #e9ecef;
+	border-bottom: 1px solid #e9ecef;
 }
 
 
@@ -163,7 +195,7 @@ ul {
     background: white;
     border-radius: 3px;
 	width: 82%;
-	height: 69%;           
+	height: auto;           
 	float: right;
 }
 
