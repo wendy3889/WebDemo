@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"> 
+<title>demo</title>
+<link href="../static/css/user.css" rel="stylesheet" type="text/css" />
+<link href="../static/css/bootstrap.css" rel="stylesheet"/>
+<script type="text/javascript" src="../static/js/jquery-3.3.1.min.js"></script>
+</head> 
+<body>     
+    <div>  
+    	<!-- 头部代码 -->
+        <div id="header">  
+            <p style="color:white;font-size: 30px">Algorithm Demo</p>
+        </div>  
+
+        <!-- 中间区域代码 -->
+        <div id="middle">  
+            <div class="sidebar">  
+                <ul>
+                    <li>
+                    	<a href="/demo1" class="nav-header" target="blank"> 
+                    		个人惯用语分析
+                    	</a>
+                    </li>
+                    <li>
+                    	<a href="/demo2" class="nav-header" target="blank"> 
+                    		群体惯用语分析
+                    	</a>
+                    </li>
+                    <li>
+                    	<a href="/demo3" class="nav-header" target="blank"> 
+                    		群体聚类及其惯用语分析
+                    	</a>
+                    </li>
+                    <li>
+                    	<a href="" class="nav-header" target="blank"><i class="fa"></i> 
+                    		
+                    	</a>
+                    </li>
+                </ul>  
+            </div>  
+
+            <!-- 中间区域右上部分 -->
+        	<div class="right-top">  
+                {% block head %}	
+                {% endblock %}
+      		</div>
+
+            <!-- 中间区域右下结果显示部分 -->
+            <div class="right-bottom">  
+                <div class="panel" >
+                    <div class="panel-heading">Result Table
+                    </div>
+                    {% block content %}   
+                    {% endblock %}
+                </div>
+            </div>  
+
+        <!-- 页脚 -->
+        </div>  
+            <div id="footer" style="text-align:right;">Copyright © synway</div> 
+        </div>  
+
+
+	
+	
+    
+</body>
+</html>

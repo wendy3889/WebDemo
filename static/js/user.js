@@ -2,6 +2,7 @@ $(document).ready(function() {
 
     $("#getnum").click(chooseFile);
     $("#gettext").click(chooseFile);
+   
     
            
 

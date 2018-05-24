@@ -41,7 +41,6 @@ function sendFile(files){
             $.ajax({
                     url: "/flask/test",
                     type: "POST",
-                    // data: data,
                     data: JSON.stringify(data), // 转化为字符串
                     contentType: '/flask/test; charset=UTF-8',
                     dataType: 'json',
