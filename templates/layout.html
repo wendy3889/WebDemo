@@ -5,9 +5,21 @@
 <title>demo</title>
 <link href="../static/css/user.css" rel="stylesheet" type="text/css" />
 <link href="../static/css/bootstrap.css" rel="stylesheet"/>
-<script type="text/javascript" src="../static/js/jquery-3.3.1.min.js"></script>
+
 </head> 
-<body>     
+<body>  
+    <!-- 引入bootstrap-table样式 -->
+    <link href="../static/bootstrap_table1.11.1/bootstrap-table.css" rel="stylesheet">
+
+    <!-- jquery -->
+    <script src="../static/js/jquery-2.1.4.min.js"></script>
+    <script src="../static/js/bootstrap.js"></script>
+
+    <!-- bootstrap-table.min.js -->
+    <script src="../static/bootstrap_table1.11.1/bootstrap-table.js"></script>
+    <!-- 引入中文语言包 -->
+    <script src="../static/bootstrap_table1.11.1/bootstrap-table-zh-CN.js"></script>
+
     <div>  
     	<!-- 头部代码 -->
         <div id="header">  
@@ -49,22 +61,17 @@
 
             <!-- 中间区域右下结果显示部分 -->
             <div class="right-bottom">  
-                <div class="panel" >
-                    <div class="panel-heading">Result Table
-                    </div>
-                    {% block content %}   
-                    {% endblock %}
-                </div>
+               
+                {% block content %}   
+                {% endblock %}
+                
             </div>  
 
         <!-- 页脚 -->
-        </div>  
+        <!-- </div>  
             <div id="footer" style="text-align:right;">Copyright © synway</div> 
-        </div>  
-
-
-	
-	
-    
+        </div>  --> 
+        </div>
+    </div>
 </body>
 </html>

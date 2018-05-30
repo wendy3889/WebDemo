@@ -1,18 +1,7 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Mon May 21 19:53:38 2018
-@author: wendy
-"""
-
-from flask import Flask,request,Response,jsonify,render_template
-import json
-from urlparse import unquote
-from datetime import datetime
-
-app = Flask(__name__)
-
-
-BookInfo = [{  
+[
+    {"total":9},
+    {"rows":
+        {  
         "ID": 1,  
         "tel" : 13777723888,  
         "keyWords" : "清华大学出版社",  
@@ -79,28 +68,6 @@ BookInfo = [{
         "keyWords" : "机械工业出版社",  
         "date" :" 2014-10-8",  
           
-    }]
-
-@app.route('/')
-def hello_world():
-    return render_template('person_idiom.html')
-
-@app.route('/gias/pic/result', methods=['POST'])
-def sent_data():
-    pageSize=request.get_json()["pageSize"]
-      
-    pageIndex=request.get_json()["pageIndex"]
-
-    
-    start=(pageIndex-1)*pageSize
-    end=pageIndex*pageSize
-    return json.dumps({"total":len(BookInfo),"rows":BookInfo[start:end]}) 
-    
-    
-    #return jsonify({'terms':terms})
- 
-if __name__ == '__main__':  
-       
-    #app.config['JSON_AS_ASCII'] = False
-    app.debug=True
-    app.run()
+    }
+}
+]

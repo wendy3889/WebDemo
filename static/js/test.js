@@ -2,12 +2,70 @@ $(document).ready(function() {
 
     $("#getnum").click(chooseFile);
     $("#gettext").click(chooseFile);
-   
-    
-           
-
-
+    $("#start-date").change(checkStartDate);
+    $("#end-date").change(checkEndDate);  
 });
+
+
+
+function checkFileType(){  
+            if (/.*\.txt$/.test(document.getElementById("input-file").value)) {  
+                ;  
+                } else {  
+                    alert('请选择txt文件!'); 
+                }  
+            }  
+
+function checkStartDate(){
+    var today = new Date();
+    var startdate = new Date(document.getElementById("start-date").value);
+    if (document.getElementById("end-date").value!='')
+    {
+        var endDate = new Date(document.getElementById("end-date").value);
+        if(endDate < startdate)
+        {
+        alert("开始日期不能大于结束日期");
+        document.getElementById("start-date").value='';
+        } 
+
+    }
+    else if (startdate>today)
+    {
+
+        alert("开始日期不能大于当前日期");
+        document.getElementById("start-date").value='';       
+    }   
+}
+
+function checkEndDate(){
+
+    var today = new Date();
+
+    if(document.getElementById("start-date").value=='')
+    {
+        alert("请先输入开始日期");
+        document.getElementById("end-date").value='';
+    }
+
+    var startdate = new Date(document.getElementById("start-date").value);
+
+    var endDate = new Date(document.getElementById("end-date").value);
+    // document.getElementById("end-date").value=y+'-'+m+'-'+d; 
+    if (endDate>today)
+    {
+
+        alert("结束日期不能大于当前日期");
+        document.getElementById("end-date").value='';
+        
+    } 
+    else if(endDate < startdate)
+    {
+        alert("结束日期必须大于开始日期");
+        document.getElementById("end-date").value='';
+    } 
+}
+
+
 
 function chooseFile(){
 	document.getElementById("btn_file").click();

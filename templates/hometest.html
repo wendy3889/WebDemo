@@ -2,15 +2,26 @@
 <html>
 <head>
 <meta charset="utf-8"> 
-<title>testweb</title>
+<title>demo</title>
 <link href="../static/css/user.css" rel="stylesheet" type="text/css" />
 <link href="../static/css/bootstrap.css" rel="stylesheet"/>
-<!-- <link rel="stylesheet" type="text/javascript" href="../static/js/home.js" />
-<link rel="stylesheet" type="text/javascript" href="../static/js/jquery-3.3.1.js" /> -->
+
 </head> 
-<body>     
+<body>  
+    <!-- 引入bootstrap-table样式 -->
+    <link href="../static/bootstrap_table1.11.1/bootstrap-table.css" rel="stylesheet">
+
+    <!-- jquery -->
+    <script src="../static/js/jquery-2.1.4.min.js"></script>
+    <script src="../static/js/bootstrap.js"></script>
+
+    <!-- bootstrap-table.min.js -->
+    <script src="../static/bootstrap_table1.11.1/bootstrap-table.js"></script>
+    <!-- 引入中文语言包 -->
+    <script src="../static/bootstrap_table1.11.1/bootstrap-table-zh-CN.js"></script>
+
     <div>  
-    	<!-- 头部代码 -->
+        <!-- 头部代码 -->
         <div id="header">  
             <p style="color:white;font-size: 30px">Algorithm Demo</p>
         </div>  
@@ -20,123 +31,91 @@
             <div class="sidebar">  
                 <ul>
                     <li>
-                    	<a href="" class="nav-header" target="blank"> 
-                    		个人惯用语分析
-                    	</a>
+                        <a href="/demo1" class="nav-header" target="blank"> 
+                            个人惯用语分析
+                        </a>
                     </li>
                     <li>
-                    	<a href="" class="nav-header" target="blank"> 
-                    		群体惯用语分析
-                    	</a>
+                        <a href="/demo2" class="nav-header" target="blank"> 
+                            群体惯用语分析
+                        </a>
                     </li>
                     <li>
-                    	<a href="" class="nav-header" target="blank"> 
-                    		群体聚类及其惯用语分析
-                    	</a>
+                        <a href="/demo3" class="nav-header" target="blank"> 
+                            群体聚类及其惯用语分析
+                        </a>
                     </li>
                     <li>
-                    	<a href="" class="nav-header" target="blank"><i class="fa"></i> 
-                    		
-                    	</a>
+                        <a href="" class="nav-header" target="blank"><i class="fa"></i> 
+                            
+                        </a>
                     </li>
                 </ul>  
             </div>  
 
             <!-- 中间区域右上部分 -->
-        	<div class="right-top">  
-                <div class="col-sm-auto">
-          			<label for="inputwords" class="col-sm-2 col-form-label">关键词</label>
-          			<input id="inputwords" class="form-control" placeholder="输入关键词，多个词时用空格输入"> 
-        		</div> <br />
-				<!-- <form> -->
-					<div class="in-row">
-        				<div class="col-sm-3">
-          					<input type="text" id="filepath" class="form-control" placeholder="导入号码/文本">
-        				</div>
-        				<div class="dropdown">
-    						<button type="button" class="btn btn-secondary">导入</button>
-    						<div class="dropdown-content">
-    							<input type="file" id="btn_file" onchange="sendFile(this.files)" style="display:none">
-    							<button id="getnum" class="btn-white" onclick="" >号码</button>
-    							<button id="gettext" class="btn-white" >文本</button>
-  							</div>
-  							<!-- <script type="text/javascript">
-  							var obj1 = document.getElementById('btn_file');
-							var obj2 = document.getElementById('filepath');
-							obj2.value = obj1.value;
-							</script> -->
-						</div>
-						&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-						<div class="col-sm-3">
-            				<div class="input-group">
-              					<div class="input-group-prepend">
-                					<div class="input-group-text">From</div>
-              					</div>
-            					<input type="date" class="form-control" placeholder="开始日期">
-            				</div>
-        				</div>
-        				<div class="col-sm-3">
-          					<div class="input-group">
-            					<div class="input-group-prepend">
-              						<div class="input-group-text">TO</div>
-            					</div>
-            					<input type="date" class="form-control" placeholder="结束日期">
-          					</div>
+            <div class="right-top">  
+                <script type="text/javascript" src="../static/js/demo1.js"></script>
+<script type="text/javascript" src="../static/js/table.js"></script>
 
-						</div>
-						<!-- <button id="getResult" class="btn btn-secondary">开始分析</button> -->
-                        <button id="getterms" class="btn btn-secondary">开始分析</button>
-					</div>
-                    <br />
-				<!-- </form>	 -->		
-      		</div>
+<div class="col-sm-auto">
+    <label for="inputwords" class="col-sm-2 col-form-label">关键词</label>
+    <input id="inputwords" class="form-control" placeholder="输入关键词，多个词时用空格输入"> 
+</div> <br />
+                
+<div class="in-row">
+    <div class="col-sm-3" style="padding-right: 5px">
+        <input type="text" id="filepath" class="form-control" placeholder="请选择txt文件导入">
+    </div>
+    <div class="col-sm-1" style="padding-left: 0">
+        <div class="dropdown">
+            <button id="import" type="button" class="btn btn-secondary">导入</button>
+            <div class="dropdown-content">
+                <input type="file" id="btn_file" onchange="filepath.value=this.value" style="display:none">
+                <button id="getnum" class="btn-white" >号码</button>
+                <button id="gettext" class="btn-white" >文本</button>
+            </div>                      
+        </div>
+    </div>
+
+    <div class="col-sm-3" style="padding-left: 30px; padding-right: 0">
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <div class="input-group-text">From</div>
+            </div>
+            <input type="date" class="form-control" placeholder="开始日期">
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <div class="input-group-text">TO</div>
+            </div>
+            <input type="date" class="form-control" placeholder="结束日期">
+        </div>
+    </div>
+    
+    <div class="col-sm-2" style="padding-right: 0">                   
+        <button id="start" class="btn btn-secondary" onclick="startCalculate(btn_file.files)">开始分析</button>
+    </div>
+</div>
+<br />
+            </div>
 
             <!-- 中间区域右下结果显示部分 -->
             <div class="right-bottom">  
                 <div class="panel" >
                     <div class="panel-heading">Result Table
                     </div>
-                    <table class="table table-bordered table-striped">
-                        <thead>
-                            <tr>
-                                <th align="left" width="200px" style="word-wrap:break-word;">Number</th>
-                                <th align="left" style="word-wrap:break-word;">Keywords</th>
-                            </tr>
-                        </thead>
-                        <tbody id="result">
-                            <!-- {% block content %}
-                                {% for i in [1,2,3,4,5] %}
-                                    <tr>
-                                    <th>Number</th>
-                                    <th>{{i}}</th>
-                                    </tr> -->
-                                    <!-- <a href="/page/{{ i }}">{{ i }}</a>
-                                {% endfor %}
-                            {% endblock %}
-
-                            <tr>
-                                <td>Mark</td>
-                                <td>Tompson</td>
-                            </tr>
-                            <tr>
-                                <td>Ashley</td>
-                                <td>Jacobs</td>    
-                            </tr> -->
-                        </tbody>
-                    </table>
+                    <table id="result"></table>
                 </div>
             </div>  
 
         <!-- 页脚 -->
-        </div>  
+        <!-- </div>  
             <div id="footer" style="text-align:right;">Copyright © synway</div> 
-        </div>  
-<script type="text/javascript" src="../static/js/jquery-3.3.1.min.js"></script>
-<!-- <script type="text/javascript" src="../static/js/user.js"></script>  -->
-<script type="text/javascript" src="../static/js/hometest.js"></script>
-
-	
-	
-    
+        </div>  --> 
+        </div>
+    </div>
 </body>
 </html>

@@ -153,6 +153,10 @@ ul {
     line-height: 1.42857143;
 }
 
+.panel img{
+    max-width:100%;max-height:100%;
+}
+
 .panel-heading{
     border-bottom: 1px solid #ccc;
     border-left: none;
@@ -199,10 +203,37 @@ ul {
 	float: right;
 }
 
+.fixed-table-pagination {
+    /*margin-top: 10px;
+    margin-bottom: 10px;*/
+    display: inline-flex;
+    line-height: 34px;
+
+}  
+
+.pull-right{
+    position: absolute;
+    right: 0;
+    left: auto;
+    margin-right: 5px;
+    
+
+}
+
+.pull-left{
+    position: relative;
+    right: auto;
+    left: 0;
+    float：right
+    margin-left: 5px;
+    
+
+}
+
 #footer {
 	/*background: blue;*/
 	height: 30px;
 	width: 100%;
-	position: absolute;
+	position: relative;
 	bottom: 0;
 }

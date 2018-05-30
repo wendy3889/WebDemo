@@ -3,26 +3,26 @@
 {% block head %}
 
 
-<script type="text/javascript" src="../static/js/demo1.js"></script>
+<script type="text/javascript" src="../static/js/demo3.js"></script>
 <div class="col-sm-auto">
     <label for="inputwords" class="col-sm-2 col-form-label">关键词</label>
     <input id="inputwords" class="form-control" placeholder="输入关键词，多个词时用空格输入"> 
 </div> <br />
-				
+                
 <div class="in-row">
     <div class="col-sm-3">
         <input type="text" id="filepath" class="form-control" placeholder="请选择txt文件导入">
     </div>
     <div class="dropdown">
-    	<button id="import" type="button" class="btn btn-secondary">导入</button>
-    	<div class="dropdown-content">
-    		<input type="file" id="btn_file" onchange="sendFile(this.files)" style="display:none">
-    		<button id="getnum" class="btn-white" onclick="" >号码</button>
-    		<button id="gettext" class="btn-white" >文本</button>
-  		</div>						
-	</div>
-	&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-	<div class="col-sm-3">
+        <button id="import" type="button" class="btn btn-secondary">导入</button>
+        <div class="dropdown-content">
+            <input type="file" id="btn_file" onchange="filepath.value=this.value" style="display:none">
+            <button id="getnum" class="btn-white" onclick="" >号码</button>
+            <button id="gettext" class="btn-white" >文本</button>
+        </div>                      
+    </div>
+    &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+    <div class="col-sm-3">
         <div class="input-group">
             <div class="input-group-prepend">
                 <div class="input-group-text">From</div>
@@ -33,17 +33,16 @@
     <div class="col-sm-3">
         <div class="input-group">
             <div class="input-group-prepend">
-              	<div class="input-group-text">TO</div>
+                <div class="input-group-text">TO</div>
             </div>
             <input type="date" class="form-control" placeholder="结束日期">
         </div>
-	</div>
-						
-    <button id="start" class="btn btn-secondary">开始分析</button>
+    </div>
+                        
+    <button id="start" class="btn btn-secondary" onclick="startCalculate(btn_file.files)">开始分析</button>
 </div>
 <br />
 
-<br />
 {% endblock %}
 
 {% block content %}  

@@ -1,27 +1,11 @@
 $(document).ready(function() {
 
-    $('#getterms').click(get_terms);
+    $("#import").click(chooseFile);
     $("#getnum").click(chooseFile);
     $("#gettext").click(chooseFile);
+    $("#start").click(startCalculate);
 
 });
-
-
-function get_terms(e) {
-     e.preventDefault();
-
-    $.get('http://localhost:5000/gta/api/terms', function(datas,status) {
-        html = ' ';
-        vals = datas.terms;
-        $.each(vals, function(i,val){
-            html += '<tr><td>'+val.id+'</td>'+'<td>'+val.terms+'</td></tr>';
-        });
-        console.log(html);
-        $('#result').html(html);
-    });
-
-  
-}
 
 
 // 选取文件
@@ -30,28 +14,33 @@ function chooseFile(){
     }
 
 
-// 读取选中的文件，发送json数据到后端
-function sendFile(files){
-    document.getElementById("filepath").value="已选择文件";
+// 读取选中的文件，发送json数据到后端处理后返回
+function startCalculate(files){
     if (files.length) {
         var file = files[0];
         var reader = new FileReader();//new一个FileReader实例
         reader.onload = function() {
             var data = this.result;
             $.ajax({
-                    url: "/flask/test",
+                    url: "/demo3/sendfile",
                     type: "POST",
                     // data: data,
                     data: JSON.stringify(data), // 转化为字符串
-                    contentType: '/flask/test; charset=UTF-8',
+                    contentType: '/demo3/sendfile; charset=UTF-8',
                     dataType: 'json',
                     success: function (data) {
                         document.getElementById("filepath").value="已导入文件";
-                     },
-                    error: function(xhr,type) {
+                        var html = '<tr><td>'+data.terms+'</td></tr>';
+                        console.log(html);
+                        $('#result').html(html);
+                        },
+                    error: function (data) {
+                        alert('加载数据失败！'); 
                         }
                  });
         };
+                 
         reader.readAsText(file);
     }
 }
+
