@@ -3,225 +3,85 @@
 <head>
 <meta charset="utf-8"> 
 <title>demo</title>
+
 <link href="../static/css/user.css" rel="stylesheet" type="text/css" />
 <link href="../static/css/bootstrap.css" rel="stylesheet"/>
+<link href="../static/bootstrap-3.3.7-dist/css/bootstrap-theme.css" rel="stylesheet"/>
+<link href="../static/bootstrap_table1.11.1/bootstrap-table.css" rel="stylesheet">
 
 </head> 
 <body>  
     <!-- 引入bootstrap-table样式 -->
-    <link href="../static/bootstrap_table1.11.1/bootstrap-table.css" rel="stylesheet">
+    
 
     <!-- jquery -->
     <script src="../static/js/jquery-2.1.4.min.js"></script>
-    <script src="../static/js/bootstrap.js"></script>
+    <script src="../static/js/bootstrap.min.js"></script>
 
     <!-- bootstrap-table.min.js -->
     <script src="../static/bootstrap_table1.11.1/bootstrap-table.js"></script>
     <!-- 引入中文语言包 -->
     <script src="../static/bootstrap_table1.11.1/bootstrap-table-zh-CN.js"></script>
 
-    <div>  
-        <!-- 头部代码 -->
-        <div id="header">  
-            <p style="color:white;font-size: 30px">Algorithm Demo</p>
-        </div>  
+    <!-- Button trigger modal -->
 
-        <!-- 中间区域代码 -->
-        <div id="middle">  
-            <div class="sidebar">  
-                <ul>
-                    <li>
-                        <a href="/demo1" class="nav-header" target="blank"> 
-                            个人惯用语分析
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/demo2" class="nav-header" target="blank"> 
-                            群体惯用语分析
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/demo3" class="nav-header" target="blank"> 
-                            群体聚类及其惯用语分析
-                        </a>
-                    </li>
-                    <li>
-                        <a href="" class="nav-header" target="blank"><i class="fa"></i> 
-                            
-                        </a>
-                    </li>
-                </ul>  
-            </div>  
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"  id="exampleModalLongTitle">输入确认</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" style="font-size: 1.2rem">
+        确认输入完毕，请点击开始分析。若想继续输入，请点击取消。
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+        <button id="confirm_input" type="button" class="btn btn-light" >开始分析</button>
+      </div>
+    </div>
+  </div>
+</div>
+        
 
             <!-- 中间区域右上部分 -->
-            <div class="right-top">  
+    <div class="right-top">  
                 <script type="text/javascript" src="../static/js/test.js"></script>
-
-<div class="col-sm-auto">
-    <label for="inputwords" class="col-sm-2 col-form-label">关键词</label>
-    <input id="inputwords" class="form-control" placeholder="输入关键词，多个词时用空格输入"> 
-</div> <br />
-                
+                <br />
 <div class="in-row">
-    <div class="col-sm-3" style="padding-right: 5px">
-        <input type="text" id="filepath" class="form-control" placeholder="请选择txt文件导入">
-    </div>
-    <div class="col-sm-1" style="padding-left: 0">
+  <div class="col-sm-8">
+    <!-- <label for="inputwords" class="col-sm-2 col-form-label">关键词</label> -->
+    <input id="inputwords" class="form-control" placeholder="输入关键词，多个词时用空格输入"> 
+  </div> 
+  <div class="col-sm-3" style="padding-left: 0">
+        <input id="filepath" class="form-control" placeholder="请选择txt文件导入号码">
+  </div>
+  <div class="col-sm-1" style="padding-left: 0;padding-right: 15px">
         <div class="dropdown">
-            <button id="import" type="button" class="btn btn-secondary">导入</button>
-            <div class="dropdown-content">
-                <input type="file" id="btn_file" onchange="filepath.value=this.value" style="display:none">
-                <button id="getnum" class="btn-white" >号码</button>
-                <button id="gettext" class="btn-white" >文本</button>
-            </div>                      
+          <button id="import_tel" type="button" class="btn btn-secondary">导入</button>
+          <div class="dropdown-content">
+                <input type="file" id="select-file" style="display:none">
+          </div>                      
         </div>
-    </div>
+  </div>
 
-    <div class="col-sm-3" style="padding-left: 30px; padding-right: 0">
-        <div class="input-group">
-            <div class="input-group-prepend">
-                <div class="input-group-text">From</div>
-            </div>
-            <input id="start-date" type="date" class="form-control" placeholder="开始日期">
-        </div>
-    </div>
-    <div class="col-sm-3">
-        <div class="input-group">
-            <div class="input-group-prepend">
-                <div class="input-group-text">TO</div>
-            </div>
-            <input id="end-date" type="date" class="form-control" placeholder="结束日期">
-        </div>
-    </div>
-    
-    <div class="col-sm-2" style="padding-right: 0">                   
-        <button id="start" class="btn btn-secondary" onclick="startCalculate(btn_file.files)">开始分析</button>
-    </div>
+
+</div><br/>
+
+<!-- Button trigger modal -->
+<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+  Launch demo modal
+</button>
+
+<button type="button" class="btn btn-primary" onclick="$('#exampleModalCenter').modal('show')">
+  显示
+</button> -->
 </div>
-<br />
-            </div>
+                
 
-<script type="text/javascript">
-  $(document).ready(function () {  
-        $('#table').bootstrapTable({  
-            url: "/test/getdata",  
-            queryParamsType: '',              //默认值为 'limit' ,在默认情况下 传给服务端的参数为：offset,limit,sort  
-            queryParams: queryParams,  
-            method: "post",  
-            pagination: true,  
-            pageNumber: 1,  
-            pageSize: 5,  
-            pageList: [10, 20, 50, 100],  
-            sidePagination: "server",         //分页方式：client客户端分页，server服务端分页（*）  
-            striped: true,                    //是否显示行间隔色  
-            cache: false,  
-            uniqueId: "BookId",               //每一行的唯一标识，一般为主键列  
-            height:300, 
-            paginationDetailHAlign:'right',
-            paginationHAlign:'right',
-            paginationPreText: "上一页",  
-            paginationNextText: "下一页",  
-            columns: [  
-                { checkbox: true },  
-                { title: '序号', width: 50, align: "center", formatter: function (value, row, index) { return index + 1; } },  
-                { title: '图书名称', field: 'Title' },  
-                { title: '图书作者', field: 'Author' },  
-                { title: '销售价格', field: 'Price' },  
-                { title: '出版社', field: 'Publish' },  
-                {title: '出版时间', field: 'PublishDate'},
-                // {  
-                //     title: '出版时间', field: 'PublishDate', formatter: function (value, row, index) {  
-                //         if (value == null)  
-                //             return "";  
-                //         else {  
-                //             var pa = /.*(.∗)(.∗)/;  
-                //             var unixtime = value.match(pa)[1].substring(0, 10);  
-                //             return getShortTime(unixtime);  
-                //         }  
-                //     }  
-                // },  
-                {  
-                    title: '操作', field: 'BookId', formatter: function (value, row, index) {  
-                        var html = '<a href="javascript:EditBook('+ value + ')">编辑</a>';  
-                        html += '　<a href="javascript:DeleteBook(' + value + ')">删除</a>';  
-                        return html;  
-                    }  
-                }  
-            ]  
-        });  
-    });  
-  
-    //查询条件  
-    function queryParams(params) {  
-        return {  
-            pageSize: params.pageSize,  
-            pageIndex: params.pageNumber,  
-            Title: $.trim($("#txtTitle").val()),  
-            Author: $.trim($("#txtAuthor").val()),  
-            Publish: $.trim($("#txtPublish").val()),  
-        };  
-    }  
-  
-    //查询事件  
-    function SearchData() {  
-        $('#table').bootstrapTable('refresh', { pageNumber: 1 });  
-    }  
-  
-    //编辑操作  
-    function EditBook(bookId){  
-        alert("编辑操作，图书ID：" + bookId);  
-    }  
-  
-    //删除操作  
-    function DeleteBook(bookId) {  
-        if (confirm("确定删除图书ID：" + bookId + "吗？"))  
-        {  
-            alert("执行删除操作");  
-        }  
-    }  
-  
-    //批量删除  
-    function BtchDeleteBook(){  
-        var opts = $('#table').bootstrapTable('getSelections');  
-        if (opts == "") {  
-            alert("请选择要删除的数据");  
-        }  
-        else {  
-            var idArray = [];  
-            for (var i = 0; i < opts.length; i++) {  
-                idArray.push(opts[i].BookId);  
-            }  
-            if (confirm("确定删除图书ID：" + idArray + "吗？")) {  
-                alert("执行删除操作");  
-            }  
-        }  
-    }  
-  
-    function getTime(/** timestamp=0 **/) {  
-        var ts = arguments[0] || 0;  
-        var t, y, m, d, h, i, s;  
-        t = ts ? new Date(ts * 1000) : new Date();  
-        y = t.getFullYear();  
-        m = t.getMonth() + 1;  
-        d = t.getDate();  
-        h = t.getHours();  
-        i = t.getMinutes();  
-        s = t.getSeconds();  
-        // 可根据需要在这里定义时间格式  
-        return y + '-' + (m < 10 ? '0' + m : m) + '-' + (d < 10 ? '0' + d : d) + ' ' + (h < 10 ? '0' + h : h) + ':' + (i < 10 ? '0' + i : i) + ':' + (s < 10 ? '0' + s : s);  
-    }  
-  
-    function getShortTime(/** timestamp=0 **/) {  
-        var ts = arguments[0] || 0;  
-        var t, y, m, d, h, i, s;  
-        t = ts ? new Date(ts * 1000) : new Date();  
-        y = t.getFullYear();  
-        m = t.getMonth() + 1;  
-        d = t.getDate();  
-        // 可根据需要在这里定义时间格式  
-        return y + '-' + (m < 10 ? '0' + m : m) + '-' + (d < 10 ? '0' + d : d);  
-    }  
-  
-</script>  
-    </body>
+   
+</body>
 </html>

@@ -6,6 +6,8 @@ $(document).ready(function() {
     $("#start-date").change(checkStartDate);
     $("#end-date").change(checkEndDate); 
     $("#start").click(startCalculate);
+    $("#inputwords").change(checkCertain);
+    $("#confirm_input").click(confirmInput);
 
 
 });
@@ -15,6 +17,37 @@ $(document).ready(function() {
 function chooseFile(){
     document.getElementById("btn_file").click();
     }
+
+//判断文件类型
+function checkFileType(){  
+            if (/.*\.txt$/.test(document.getElementById("select-file").value)) 
+            {  
+                filepath.value=this.value;
+                } 
+            else {  
+                    alert('请选择txt文件!'); 
+                }  
+            }  
+
+function checkCertain(){
+    $('#exampleModalCenter').modal('show');
+
+
+}
+
+function confirmInput(){ 
+    $('#exampleModalCenter').modal('hide');
+    var data=document.getElementById("inputwords").value;
+    $.ajax({
+                    url: "/flask/test",
+                    type: "POST",
+                    // data: data,
+                    data: JSON.stringify(data), // 转化为字符串
+                    contentType: '/flask/test; charset=UTF-8',
+                    dataType: 'json',
+                 });
+    
+}
 
 
 // 读取选中的文件，发送json数据到后端

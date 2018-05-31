@@ -1,17 +1,42 @@
 $(document).ready(function() {
 
-    $("#getnum").click(chooseFile);
-    $("#gettext").click(chooseFile);
+    $("#import_tel").click(chooseFile);
+    $("#inputwords").change(checkCertain);
     $("#start-date").change(checkStartDate);
-    $("#end-date").change(checkEndDate);  
+    $("#end-date").change(checkEndDate);
+    $("#select-file").change(checkFileType); 
+    $("#confirm_input").click(confirmInput); 
+    // $("#filepath").change(checkCertain);
 });
 
 
+function checkCertain(){
+    $('#exampleModalCenter').modal('show');
+
+
+}
+
+function confirmInput(){ 
+    $('#exampleModalCenter').modal('hide');
+    var data=document.getElementById("inputwords").value;
+    $.ajax({
+                    url: "/flask/test",
+                    type: "POST",
+                    // data: data,
+                    data: JSON.stringify(data), // 转化为字符串
+                    contentType: '/flask/test; charset=UTF-8',
+                    dataType: 'json',
+                 });
+    
+}
 
 function checkFileType(){  
-            if (/.*\.txt$/.test(document.getElementById("input-file").value)) {  
-                ;  
-                } else {  
+            if (/.*\.txt$/.test(document.getElementById("select-file").value)) 
+            {  
+                filepath.value=this.value;
+                checkCertain()
+                } 
+            else {  
                     alert('请选择txt文件!'); 
                 }  
             }  
@@ -68,7 +93,7 @@ function checkEndDate(){
 
 
 function chooseFile(){
-	document.getElementById("btn_file").click();
+	document.getElementById("select-file").click();
 	
 }
 

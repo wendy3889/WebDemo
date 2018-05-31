@@ -84,12 +84,19 @@ BookInfo = [{
 @app.route('/')
 def hello_world():
     return render_template('person_idiom.html')
+    
+@app.route('/flask/test',methods=['POST'])
+def test():
+    data=request.get_data()
+    print data 
+    return jsonify({"words":data})  
+    
 
 @app.route('/gias/pic/result', methods=['POST'])
-def sent_data():
+def sent_data():    
     pageSize=request.get_json()["pageSize"]
       
-    pageIndex=request.get_json()["pageIndex"]
+    pageIndex=request.get_json()["pageIndex"] 
 
     
     start=(pageIndex-1)*pageSize

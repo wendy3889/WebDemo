@@ -3,50 +3,48 @@
 {% block head %}
 
 <!-- 导入js函数 -->
-<script type="text/javascript" src="../static/js/demo1.js"></script>
-
-<div class="col-sm-auto">
-    <label for="inputwords" class="col-sm-2 col-form-label">关键词</label>
-    <input id="inputwords" class="form-control" placeholder="输入关键词，多个词时用空格输入"> 
-</div> <br />
-                
+<script type="text/javascript" src="../static/js/gias.js"></script>
+<br /><br />                
 <div class="in-row">
-    <div class="col-sm-3" style="padding-right: 5px">
-        <input type="text" id="filepath" class="form-control" placeholder="请选择txt文件导入">
-    </div>
-    <div class="col-sm-1" style="padding-left: 0">
+  <div class="col-sm-8">
+    <!-- <label for="inputwords" class="col-sm-2 col-form-label">关键词</label> -->
+    <input id="inputwords" class="form-control" style="height: 40px;font-size: 16px" placeholder="输入关键词，多个词时用空格输入"> 
+  </div> 
+  <div class="col-sm-3" style="padding-left: 0">
+        <input id="filepath" class="form-control" style="height: 40px;font-size: 16px" placeholder="请选择txt文件导入号码">
+  </div>
+  <div class="col-sm-1" style="padding-left: 0;padding-right: 15px">
         <div class="dropdown">
-            <button id="import" type="button" class="btn btn-secondary">导入</button>
-            <div class="dropdown-content">
-                <input type="file" id="btn_file" onchange="filepath.value=this.value" style="display:none">
-                <button id="getnum" class="btn-white" >号码</button>
-                <button id="gettext" class="btn-white" >文本</button>
-            </div>                      
+          <button id="import_tel" type="button" class="btn btn-secondary">导入</button>
+          <div class="dropdown-content">
+                <input type="file" id="select-file" style="display:none">
+          </div>                      
         </div>
-    </div>
-
-    <div class="col-sm-3" style="padding-left: 30px; padding-right: 0">
-        <div class="input-group">
-            <div class="input-group-prepend">
-                <div class="input-group-text">From</div>
-            </div>
-            <input id="start-date" type="date" class="form-control" placeholder="开始日期">
-        </div>
-    </div>
-    <div class="col-sm-3">
-        <div class="input-group">
-            <div class="input-group-prepend">
-                <div class="input-group-text">TO</div>
-            </div>
-            <input id="end-date" type="date" class="form-control" placeholder="结束日期">
-        </div>
-    </div>
-    
-    <div class="col-sm-2" style="padding-right: 0">                   
-        <button id="start" class="btn btn-secondary" onclick="startCalculate(btn_file.files)">开始分析</button>
-    </div>
+  </div>
 </div>
-<br />
+<br /><br />
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"  id="exampleModalLongTitle">输入确认</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" style="font-size: 1.2rem">
+        确认输入完毕，请点击开始分析。若想继续输入，请点击取消。
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+        <button id="confirm_input" type="button" class="btn btn-light" >开始分析</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 {% endblock %}
 
@@ -54,7 +52,7 @@
 <!-- 导入bootstrap table设置 -->
 <script type="text/javascript" src="../static/js/table.js"></script>
     <div class="panel">
-        <div class="panel-heading">Result Table</div>                    
+        <div class="panel-heading"></div>                    
         <table id="result"></table>
     </div>
 {% endblock %}
