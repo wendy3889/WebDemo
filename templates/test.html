@@ -5,7 +5,7 @@
 <title>demo</title>
 
 <link href="../static/css/user.css" rel="stylesheet" type="text/css" />
-<link href="../static/css/bootstrap.css" rel="stylesheet"/>
+<link href="../static/bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet"/>
 <link href="../static/bootstrap-3.3.7-dist/css/bootstrap-theme.css" rel="stylesheet"/>
 <link href="../static/bootstrap_table1.11.1/bootstrap-table.css" rel="stylesheet">
 
@@ -16,7 +16,7 @@
 
     <!-- jquery -->
     <script src="../static/js/jquery-2.1.4.min.js"></script>
-    <script src="../static/js/bootstrap.min.js"></script>
+    <script src="../static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 
     <!-- bootstrap-table.min.js -->
     <script src="../static/bootstrap_table1.11.1/bootstrap-table.js"></script>
@@ -71,16 +71,32 @@
 
 </div><br/>
 
-<!-- Button trigger modal -->
-<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+
+</div>
+   
+
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#confirm-input-modal">
   Launch demo modal
 </button>
 
-<button type="button" class="btn btn-primary" onclick="$('#exampleModalCenter').modal('show')">
-  显示
-</button> -->
-</div>
-                
+<!-- Modal -->
+<div class="modal fade" id="confirm-input-modal" tabindex="-1" role="dialog" aria-labelledby="inputModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="inputModalLabel">输入确认</h4>
+      </div>
+      <div class="modal-body">
+        确认输入完毕，请点击开始分析。若想继续输入，请点击取消。
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary">开始分析</button>
+      </div>
+    </div>
+  </div>
+</div>          
 
    
 </body>

@@ -1,13 +1,10 @@
 $(document).ready(function() {
 
-    $("#import").click(chooseFile);
-    $("#getnum").click(chooseFile);
-    $("#gettext").click(chooseFile);
-    $("#start-date").change(checkStartDate);
-    $("#end-date").change(checkEndDate); 
-    $("#start").click(startCalculate);
-    $("#inputwords").change(checkCertain);
-    $("#confirm_input").click(confirmInput);
+    $("#import-tel-bnt").click(chooseFile);//导入文件按钮
+    $("#select-file").change(checkFileType);//选择文件按钮
+    $("#inputwords-form").change(checkInputWords);//关键词输入框
+    $("#confirm-inputwords-bnt").click(confirmInputWords);//确认输入按钮
+    $("#confirm-importfile-bnt").click(confirmImportFile);//确认导入文件按钮
 
 
 });
@@ -15,39 +12,67 @@ $(document).ready(function() {
 
 // 选取文件
 function chooseFile(){
-    document.getElementById("btn_file").click();
+    document.getElementById("select-file").click();
     }
 
-//判断文件类型
+//判断文件类型，输入为txt文件则弹出确认框
 function checkFileType(){  
-            if (/.*\.txt$/.test(document.getElementById("select-file").value)) 
+            if (/.*\.txt$/.test(this.value)) 
             {  
-                filepath.value=this.value;
+                document.getElementById("filepath").value=this.files[0].name;
+                $('#confirm-import-modal').modal('show');
                 } 
             else {  
                     alert('请选择txt文件!'); 
+                    this.value='';
                 }  
             }  
 
-function checkCertain(){
-    $('#exampleModalCenter').modal('show');
 
+//判断输入的关键词是否标准，并弹出确认框
+function checkInputWords(){
+    //标准格式：
+    if (true) {
+        $('#confirm-input-modal').modal('show');
+    }
+    else{
+        alert("输入有误，请按示例重新输入！");
+        this.value='';
 
-}
-
-function confirmInput(){ 
-    $('#exampleModalCenter').modal('hide');
-    var data=document.getElementById("inputwords").value;
-    $.ajax({
-                    url: "/flask/test",
-                    type: "POST",
-                    // data: data,
-                    data: JSON.stringify(data), // 转化为字符串
-                    contentType: '/flask/test; charset=UTF-8',
-                    dataType: 'json',
-                 });
+    }
     
 }
+
+
+//用户确认输入后发送数据到后端，并开始分析
+function confirmInputWords(){ 
+    $('#confirm-input-modal').modal('hide');
+    $('#result').bootstrapTable('refresh', { pageNumber: 1 });
+}
+
+
+//用户确认输入文件并返回文件内容，若为空则重新选择
+function confirmImportFile(){
+    $('#confirm-import-modal').modal('hide');
+    var files=document.getElementById("select-file").files;
+    if (files.length) {
+        var file = files[0];
+        var reader = new FileReader();//new一个FileReader实例
+        reader.onload = function() {
+            document.getElementById("filepath").value=this.result;
+            $('#result').bootstrapTable('refresh', { pageNumber: 1 });
+        };              
+        reader.readAsText(file);
+        
+    }
+
+    else{
+        alert("文件为空，请重新输入！");
+        document.getElementById("select-file").value='';
+    }
+}
+
+
 
 
 // 读取选中的文件，发送json数据到后端
@@ -65,7 +90,7 @@ function startCalculate(files){
                     contentType: '/demo1/sendfile; charset=UTF-8',
                     dataType: 'json',
                     success: function (data) {
-                        document.getElementById("filepath").value="已导入文件";
+                        document.getElementById("filepath-form").value="已导入文件";
                         html = ' ';
                         tel=data.input_tels;
                         txt=data.input_txts;

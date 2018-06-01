@@ -1,21 +1,66 @@
 {% extends "layout.html" %}
 
+
+
+{% block modal %}
+<!-- 模态框需放到最高层级，否则有可能影响显示 -->
+
+<!-- 模态框，确认输入关键词 -->
+<div class="modal fade" id="confirm-input-modal" tabindex="-1" role="dialog" aria-labelledby="inputModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="inputModalLabel">输入确认</h4>
+      </div>
+      <div class="modal-body">
+        确认输入完毕，请点击开始分析。若想继续输入，请点击取消。
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button id="confirm-inputwords-bnt" type="button" class="btn btn-primary">开始分析</button>
+      </div>
+    </div>
+  </div>
+</div>             
+
+
+<!-- 模态框，确认导入的电话号码 -->
+<div class="modal fade" id="confirm-import-modal" tabindex="-1" role="dialog" aria-labelledby="importModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="importModalLabel">导入号码确认</h4>
+      </div>
+      <div class="modal-body">
+        请确认导入文件是否正确，若正确，请点击开始分析。若想重新选择，请点击取消。
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button id="confirm-importfile-bnt" type="button" class="btn btn-primary">开始分析</button>
+      </div>
+    </div>
+  </div>
+</div>         
+
+{% endblock %}
+
 {% block head %}
 
 <!-- 导入js函数 -->
-<script type="text/javascript" src="../static/js/gias.js"></script>
 <br /><br />                
 <div class="in-row">
   <div class="col-sm-8">
     <!-- <label for="inputwords" class="col-sm-2 col-form-label">关键词</label> -->
-    <input id="inputwords" class="form-control" style="height: 40px;font-size: 16px" placeholder="输入关键词，多个词时用空格输入"> 
+    <input id="inputwords-form" class="form-control" style="height: 40px;font-size: 16px" placeholder="输入关键词，多个词时用空格输入"> 
   </div> 
   <div class="col-sm-3" style="padding-left: 0">
         <input id="filepath" class="form-control" style="height: 40px;font-size: 16px" placeholder="请选择txt文件导入号码">
   </div>
   <div class="col-sm-1" style="padding-left: 0;padding-right: 15px">
         <div class="dropdown">
-          <button id="import_tel" type="button" class="btn btn-secondary">导入</button>
+          <button id="import-tel-bnt" type="button" class="btn btn-secondary">导入</button>
           <div class="dropdown-content">
                 <input type="file" id="select-file" style="display:none">
           </div>                      
@@ -23,27 +68,6 @@
   </div>
 </div>
 <br /><br />
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title"  id="exampleModalLongTitle">输入确认</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body" style="font-size: 1.2rem">
-        确认输入完毕，请点击开始分析。若想继续输入，请点击取消。
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-        <button id="confirm_input" type="button" class="btn btn-light" >开始分析</button>
-      </div>
-    </div>
-  </div>
-</div>
 
 
 {% endblock %}

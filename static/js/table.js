@@ -53,11 +53,12 @@ $(document).ready(function () {
 
     }); 
 
-    function queryParams(params) {  
+    function queryParams(params) { 
         return {  
             pageSize: params.pageSize,  //每页显示的条数
             pageIndex: params.pageNumber,  //当前页码
-            // Title: $.trim($("#txtTitle").val()),  
+            tels: $("#filepath").val(),
+            words: $("#inputwords-form").val(),  
             // Author: $.trim($("#txtAuthor").val()),  
             // Publish: $.trim($("#txtPublish").val()),  
         };  

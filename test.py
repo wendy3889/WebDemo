@@ -6,7 +6,7 @@ Created on Mon May 21 19:53:38 2018
 
 from flask import Flask,request,Response,jsonify,render_template
 import json
-from urlparse import unquote
+
 from datetime import datetime
 
 app = Flask(__name__)
@@ -64,7 +64,7 @@ BookInfo = [{
         "Author" : "秦靖",  
         "keyWords" : "机械工业出版社",  
         "date" :" 2014-10-8",  
-        "Price" : 38.55  
+         
     },
     {  
         "ID" : 8,  
@@ -93,7 +93,9 @@ def test():
     
 
 @app.route('/gias/pic/result', methods=['POST'])
-def sent_data():    
+def sent_data(): 
+    #tels=request.get_json()["tel"]
+    # print tels
     pageSize=request.get_json()["pageSize"]
       
     pageIndex=request.get_json()["pageIndex"] 
