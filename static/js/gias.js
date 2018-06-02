@@ -2,11 +2,12 @@ $(document).ready(function() {
 
     $("#import-tel-bnt").click(chooseFile);//导入文件按钮
     $("#select-file").change(checkFileType);//选择文件按钮
+    $("[data-toggle='popover']").popover();//弹出框
+    $("#inputwords-form").keyup(limitInput);//限制用户输入
+    $("#inputwords-form").contextmenu(limitInput);
     $("#inputwords-form").change(checkInputWords);//关键词输入框
     $("#confirm-inputwords-bnt").click(confirmInputWords);//确认输入按钮
     $("#confirm-importfile-bnt").click(confirmImportFile);//确认导入文件按钮
-
-
 });
 
 
@@ -28,18 +29,18 @@ function checkFileType(){
                 }  
             }  
 
+//限制只能输入中文、括号和逗号
+function limitInput(){
+    
+    this.value=this.value.replace(/[^\u4E00-\u9FA5^\，^\（^\）]/g,'')
+
+}
+
 
 //判断输入的关键词是否标准，并弹出确认框
 function checkInputWords(){
     //标准格式：
-    if (true) {
-        $('#confirm-input-modal').modal('show');
-    }
-    else{
-        alert("输入有误，请按示例重新输入！");
-        this.value='';
-
-    }
+    $('#confirm-input-modal').modal('show');
     
 }
 
@@ -48,6 +49,7 @@ function checkInputWords(){
 function confirmInputWords(){ 
     $('#confirm-input-modal').modal('hide');
     $('#result').bootstrapTable('refresh', { pageNumber: 1 });
+    document.getElementById("inputwords-form").value='';
 }
 
 
@@ -61,6 +63,8 @@ function confirmImportFile(){
         reader.onload = function() {
             document.getElementById("filepath").value=this.result;
             $('#result').bootstrapTable('refresh', { pageNumber: 1 });
+            document.getElementById("filepath").value='';
+            document.getElementById("select-file").value='';
         };              
         reader.readAsText(file);
         

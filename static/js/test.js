@@ -2,12 +2,22 @@ $(document).ready(function() {
 
     $("#import_tel").click(chooseFile);
     $("#inputwords").change(checkCertain);
+    $("#inputwords").keyup(checkContent);
+    $("[data-toggle='popover']").popover();
     $("#start-date").change(checkStartDate);
     $("#end-date").change(checkEndDate);
     $("#select-file").change(checkFileType); 
     $("#confirm_input").click(confirmInput); 
+
     // $("#filepath").change(checkCertain);
 });
+
+
+function checkContent(){
+    //限制只能输入中文、括号和逗号
+    this.value=this.value.replace(/[^\u4E00-\u9FA5^\，^\（^\）]/g,'')
+
+}
 
 
 function checkCertain(){

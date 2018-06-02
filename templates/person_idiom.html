@@ -53,14 +53,14 @@
 <div class="in-row">
   <div class="col-sm-8">
     <!-- <label for="inputwords" class="col-sm-2 col-form-label">关键词</label> -->
-    <input id="inputwords-form" class="form-control" style="height: 40px;font-size: 16px" placeholder="输入关键词，多个词时用空格输入"> 
+    <input id="inputwords-form" style="height: 40px;font-size: 16px" class="form-control" data-toggle="popover" data-container="body" data-toggle="popover" data-placement="bottom" title="输入提示" data-content="输入的括号及逗号均为中文字符，括号中的关键词逻辑关系为“与”，括号与括号间关键词的逻辑关系为“或”。请务必按标准输入！" placeholder="输入关键词，以括号和逗号分隔，如（我们，他们）（它们，她们）"> 
   </div> 
   <div class="col-sm-3" style="padding-left: 0">
         <input id="filepath" class="form-control" style="height: 40px;font-size: 16px" placeholder="请选择txt文件导入号码">
   </div>
   <div class="col-sm-1" style="padding-left: 0;padding-right: 15px">
         <div class="dropdown">
-          <button id="import-tel-bnt" type="button" class="btn btn-secondary">导入</button>
+          <button id="import-tel-bnt" style="height: 40px;font-size: 16px" type="button" class="btn btn-secondary">导入</button>
           <div class="dropdown-content">
                 <input type="file" id="select-file" style="display:none">
           </div>                      

@@ -54,7 +54,7 @@
 <div class="in-row">
   <div class="col-sm-8">
     <!-- <label for="inputwords" class="col-sm-2 col-form-label">关键词</label> -->
-    <input id="inputwords" class="form-control" placeholder="输入关键词，多个词时用空格输入"> 
+    <input id="inputwords" class="form-control" data-toggle="popover" data-container="body" data-toggle="popover" data-placement="bottom" title="输入提示" data-content="输入的括号及逗号均为中文字符，括号中的关键词逻辑关系为“与”，括号与括号间关键词的逻辑关系为“或”。请务必按标准输入！" placeholder="输入关键词，以括号和逗号分隔，如（我们，他们）（它们，她们）"> 
   </div> 
   <div class="col-sm-3" style="padding-left: 0">
         <input id="filepath" class="form-control" placeholder="请选择txt文件导入号码">
@@ -79,6 +79,9 @@
   Launch demo modal
 </button>
 
+<button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="top" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
+  Popover on 顶部
+</button>
 <!-- Modal -->
 <div class="modal fade" id="confirm-input-modal" tabindex="-1" role="dialog" aria-labelledby="inputModalLabel">
   <div class="modal-dialog" role="document">
@@ -93,10 +96,13 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
         <button type="button" class="btn btn-primary">开始分析</button>
+
       </div>
     </div>
   </div>
 </div>          
+
+
 
    
 </body>
