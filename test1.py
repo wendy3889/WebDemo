@@ -4,9 +4,19 @@ Created on Mon May 21 19:53:38 2018
 
 @author: wendy
 """
+from flask import Flask,request,Response,jsonify,render_template
+import json
 
-from server import dataclean
+from datetime import datetime
 
-text='"1234743;瑜伽垫|囤零食|苏州\r\n2343543;哪里|电力局\r\n2435678;小溪|政府\r\n3465766;国光大厦"'
+app = Flask(__name__)
 
-print dataclean.pre_treat("1234743;瑜伽垫|囤零食|苏州\r\n2343543;哪里|电力局\r\n2435678;小溪|政府\r\n3465766;国光大厦")[1]
+@app.route('/')
+def hello_world():
+    return render_template('test.html')
+    
+if __name__ == '__main__':  
+       
+    #app.config['JSON_AS_ASCII'] = False
+    app.debug=True
+    app.run()

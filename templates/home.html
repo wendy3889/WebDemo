@@ -2,13 +2,9 @@
 <html>
 <head>
 <meta charset="utf-8"> 
-<title>demo</title>
+<title>团体惯用语分析demo</title>
 <link href="../static/css/user.css" rel="stylesheet" type="text/css" />
 <link href="../static/bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet"/>
-<link href="../static/bootstrap-3.3.7-dist/css/bootstrap-theme.css" rel="stylesheet"/>
-<!-- 引入bootstrap-table样式 -->
-<link href="../static/bootstrap_table1.11.1/bootstrap-table.css" rel="stylesheet">
-
 </head> 
 <body style="font-family:monospace;font-size: 16px">  
     <!-- jquery -->
@@ -21,7 +17,6 @@
     <!-- 引入中文语言包 -->
     <script src="../static/bootstrap_table1.11.1/bootstrap-table-zh-CN.js"></script>
     <script type="text/javascript" src="../static/js/table.js"></script>
-    <script type="text/javascript" src="../static/js/test.js"></script>
     <script type="text/javascript" src="../static/js/gias.js"></script>
 
     <div>  
@@ -31,10 +26,9 @@
         </div>  
 
         <!-- 中间区域代码 -->
-        <!-- 中间区域代码 -->
-        <div id="middle">  
-            <!-- 侧边栏  -->
-            <div class="sidebar2">  
+        <div id="middle"> 
+        <!-- 侧边栏  -->
+            <div class="sidebar">  
                 <ul>
                     <li>
                         <a href="/pic" class="nav-header" target="blank"> 
@@ -46,11 +40,10 @@
                         <a href="/gic" class="nav-header" target="blank"> 
                             <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
                             <span><b>群体惯用语分析</b></span>
-                            <span id="gic-alarm" class="label-alarm"></span>
                         </a>
                     </li>
                     <li>
-                        <a id="gcc" href="home.html" class="nav-header" target="blank"> 
+                        <a href="/gcc" class="nav-header" target="blank"> 
                             <span class="glyphicon glyphicon-link" aria-hidden="true"></span>
                             <span><b>群体聚类及惯用语分析</b></span>
                             <span id="gcc-alarm" class="label-alarm"></span>
@@ -59,49 +52,24 @@
                     <li>
                         <a href="home.html" class="nav-header" target="blank"> 
                             <span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>
-                            
                             <span><b>用户指南</b></span>
-                            <!-- <span class="badge">14</span> -->
                         </a>
                     </li>
-                    
                 </ul>  
             </div>  
 
-            <div id="right-top">  
-                <p class="right-title">群体惯用语分析</p>
-                
+            <!-- 中间区域右上部分 -->
+            <div class="right" align="center">  
+                 
             </div>
-
-            <!-- 中间区域右下结果显示部分 -->
-            <div id="right-bottom" style="font-family: 'Open Sans'" >  
-               
-                <ul class="nav nav-tabs">
-                    <li class="active"><a href="#home" data-toggle="tab">Profile</a></li>
-                    <li class=""><a href="#profile" data-toggle="tab">Password</a></li>
-                </ul>
-
-                <div class="tab-pane fade" id="profile">
-
-        <form id="tab2">
-          <div class="form-group">
-            <label>New Password</label>
-            <input type="password" class="form-control">
-          </div>
-          <div>
-              <button class="btn btn-primary">Update</button>
-          </div>
-        </form>
-      </div>
-                
-            </div>  
 
             
 
-         
-       </div>
-       <div class="footer" style="text-align:right;">Copyright © synway</div> 
-        </div> 
+        <!-- 页脚 -->
+          
+            <div id="footer" style="text-align:right;">Copyright © synway</div> 
+        </div>  
+       
     </div>
 </body>
 </html>

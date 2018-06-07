@@ -83,7 +83,13 @@ BookInfo = [{
 
 @app.route('/')
 def hello_world():
-    return render_template('person_idiom.html')
+    return render_template('home.html')
+
+
+@app.route('/pic')
+def dicweb(tasknum):
+    
+    return render_template('person_idiom.html', gic-task=tasknum)    
     
 @app.route('/flask/test',methods=['POST'])
 def test():
@@ -95,7 +101,7 @@ def test():
 @app.route('/gias/pic/result', methods=['POST'])
 def sent_data(): 
     #tels=request.get_json()["tel"]
-    # print tels
+    # print tels 
     pageSize=request.get_json()["pageSize"]
       
     pageIndex=request.get_json()["pageIndex"] 

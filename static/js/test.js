@@ -1,5 +1,5 @@
 $(document).ready(function() {
-
+    $("#gcc").click(changeAlarmNum);
     $("#import_tel").click(chooseFile);
     $("#inputwords").change(checkCertain);
     $("#inputwords").keyup(checkContent);
@@ -13,9 +13,13 @@ $(document).ready(function() {
 });
 
 
+function changeAlarmNum(){
+    $("#gic-alarm").text("+2");
+}
+
 function checkContent(){
     //限制只能输入中文、括号和逗号
-    this.value=this.value.replace(/[^\u4E00-\u9FA5^\，^\（^\）]/g,'')
+    this.value=this.value.replace(/[^\u4E00-\u9FA5^\，^\（^\）]/g,'');
 
 }
 

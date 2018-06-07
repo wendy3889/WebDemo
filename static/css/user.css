@@ -27,12 +27,48 @@ ul {
 #middle {
 	position: absolute;
 	width: 100%;
+    min-height: 800px;
 	height: auto;
 	top: 50px;
 	bottom: 0px;
 }
+
+
+#right-top{
+
+    border-bottom: 1px solid #eee;
+    margin: 0px 0em 2em 0em;
+
+    position: relative;
+    min-height: 100px;
+    background: #fff;
+    margin-left: 240px;
+    
+    padding: 15px 15px 0px 15px;
+}
+
+#right-bottom{
+    position: relative;
+    min-height: 700px;
+    background: #fff;
+    margin-left: 240px;
+    padding: 0px 15px 0px 15px;
+}
+
+
+.sidebar2{
+    width: 240px;
+    position: absolute;
+    float: left;
+    border-top: none;
+    border-right: 1px solid #cccccc;
+    margin: 0em;
+    background: #fafafa;
+    min-height: 800px
+    }
+
 .sidebar{
-    width: 18%;
+    width: 240px;
     position: absolute;
     float: left;
     border-top: none;
@@ -184,23 +220,36 @@ ul {
 	height: 100%;
 }
 
-.right-top {
-	width: 82%;  /*这里是百分比或者像素值，对应下面的center就是百分比或者像素值*/
-	height: auto;
-	background: ;
-	float: right;
-	border-bottom: 1px solid #e9ecef;
+.right{
+    position: relative;
+    min-height: 800px;
+    background: #fff;
+    margin-left: 240px;
+    border-left: 1px solid #cccccc;
+    padding: 15px 15px 0px 15px;
+}
+
+
+
+.right-title {
+    margin: 1em 0em 0.5em 0.5em;
+    line-height: 1em;
+    font-size: 22px;
+    font-weight: normal;
+    color: #4d5b76;
+    font-family: 'Open Sans'
 }
 
 
 
 .right-bottom {
-	border: 1px solid #ccc;
-    background: white;
+	position: relative;
+    min-height: 600px;
+    background: #fff;
+    margin-left: 240px;
+    border-top: 1px solid #cccccc;
+    padding: 15px 15px 0px 15px;
     border-radius: 3px;
-	width: 82%;
-	height: auto;           
-	float: right;
 }
 
 .fixed-table-pagination {
@@ -210,6 +259,23 @@ ul {
     line-height: 34px;
 
 }  
+
+.label-alarm{
+    display: inline;
+    font-size: 75%;
+    font-weight: bold;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25em;
+    color: #fff;
+    float: right;
+    margin-top: .7em;
+    line-height: 1.5em;
+    padding: 0;
+    background-color: #5bc0de;
+}
 
 .pull-right{
     position: absolute;
@@ -230,10 +296,11 @@ ul {
 
 }
 
-#footer {
-	/*background: blue;*/
-	height: 30px;
-	width: 100%;
-	position: relative;
-	bottom: 0;
+.footer {
+    padding: 1em;
+    margin-top: 4em;
+    color: #666;
+    font-size: .85em;
+    line-height: 1.3em;
+    margin: 4em -3px 0em -3px;
 }

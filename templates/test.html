@@ -1,109 +1,26 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="utf-8"> 
-<title>demo</title>
+    <meta charset="UTF-8">
+    <title>D3 Demo1</title>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+</head>
+<body>
 
-<link href="../static/css/user.css" rel="stylesheet" type="text/css" />
-<link href="../static/bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet"/>
-<link href="../static/bootstrap-3.3.7-dist/css/bootstrap-theme.css" rel="stylesheet"/>
-<link href="../static/bootstrap_table1.11.1/bootstrap-table.css" rel="stylesheet">
-
-</head> 
-<body>  
-    <!-- 引入bootstrap-table样式 -->
-    
-
-    <!-- jquery -->
-    <script src="../static/js/jquery-2.1.4.min.js"></script>
-    <script src="../static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-
-    <!-- bootstrap-table.min.js -->
-    <script src="../static/bootstrap_table1.11.1/bootstrap-table.js"></script>
-    <!-- 引入中文语言包 -->
-    <script src="../static/bootstrap_table1.11.1/bootstrap-table-zh-CN.js"></script>
-
-    <!-- Button trigger modal -->
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title"  id="exampleModalLongTitle">输入确认</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body" style="font-size: 1.2rem">
-        确认输入完毕，请点击开始分析。若想继续输入，请点击取消。
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-        <button id="confirm_input" type="button" class="btn btn-light" >开始分析</button>
-      </div>
-    </div>
-  </div>
-</div>
-        
-
-            <!-- 中间区域右上部分 -->
-    <div class="right-top">  
-                <script type="text/javascript" src="../static/js/test.js"></script>
-                <br />
-<div class="in-row">
-  <div class="col-sm-8">
-    <!-- <label for="inputwords" class="col-sm-2 col-form-label">关键词</label> -->
-    <input id="inputwords" class="form-control" data-toggle="popover" data-container="body" data-toggle="popover" data-placement="bottom" title="输入提示" data-content="输入的括号及逗号均为中文字符，括号中的关键词逻辑关系为“与”，括号与括号间关键词的逻辑关系为“或”。请务必按标准输入！" placeholder="输入关键词，以括号和逗号分隔，如（我们，他们）（它们，她们）"> 
-  </div> 
-  <div class="col-sm-3" style="padding-left: 0">
-        <input id="filepath" class="form-control" placeholder="请选择txt文件导入号码">
-  </div>
-  <div class="col-sm-1" style="padding-left: 0;padding-right: 15px">
-        <div class="dropdown">
-          <button id="import_tel" type="button" class="btn btn-secondary">导入</button>
-          <div class="dropdown-content">
-                <input type="file" id="select-file" style="display:none">
-          </div>                      
-        </div>
-  </div>
-
-
-</div><br/>
-
-
-</div>
-   
-
-<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#confirm-input-modal">
-  Launch demo modal
-</button>
-
-<button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="top" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
-  Popover on 顶部
-</button>
-<!-- Modal -->
-<div class="modal fade" id="confirm-input-modal" tabindex="-1" role="dialog" aria-labelledby="inputModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="inputModalLabel">输入确认</h4>
-      </div>
-      <div class="modal-body">
-        确认输入完毕，请点击开始分析。若想继续输入，请点击取消。
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-        <button type="button" class="btn btn-primary">开始分析</button>
-
-      </div>
-    </div>
-  </div>
-</div>          
-
-
-
-   
 </body>
+<script type="text/javascript">
+    var body = d3.select('body');   //选择body元素
+body.append('h1')    //向 body元素中插入 h1标签
+  .text('Hello world')    // 给h1标签填充文字为hello world
+  .style('color','red');   //修改样式 字体颜色 为红色
+/*
+ 这里涉及一个概念：选择集
+ 使用 d3.select() 或 d3.selectAll() 选择元素后返回的对象，就是选择集。
+ 另外，有人会发现，D3 能够连续不断地调用函数，形如：
+ d3.select().selectAll().text()
+ 这称为链式语法，和 JQuery 的语法很像，常用 JQuery 的朋友一定会感到很亲切。
+ 因为封装每个方法的时候都会返回当前对象 return  this;
+
+ */
+</script>
 </html>
