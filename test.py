@@ -83,13 +83,13 @@ BookInfo = [{
 
 @app.route('/')
 def hello_world():
-    return render_template('home.html')
+    return render_template('layout.html')
 
 
 @app.route('/pic')
-def dicweb(tasknum):
+def dicweb():
     
-    return render_template('person_idiom.html', gic-task=tasknum)    
+    return render_template('person_idiom.html')    
     
 @app.route('/flask/test',methods=['POST'])
 def test():

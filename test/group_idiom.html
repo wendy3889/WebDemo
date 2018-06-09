@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- {% extends "layout.html" %} -->
 <html>
 <head>
 <meta charset="utf-8"> 
@@ -23,12 +24,12 @@
     <script src="../static/bootstrap_table1.11.1/bootstrap-table-zh-CN.js"></script>
     <script type="text/javascript" src="../static/js/table.js"></script>
     <script type="text/javascript" src="../static/js/test.js"></script>
-    <script type="text/javascript" src="../static/js/gias.js"></script>
-    {% block modal %}    
-    {% endblock %} 
+    <script type="text/javascript" src="../test/group-idiom.js"></script>
+    <!-- {% block modal %}     -->
+    <!-- {% endblock %}  -->
 
     <div>  
-        <!-- 头部代码 -->
+      <!-- 头部代码 -->
         <div id="header">  
             <p style="color:white;font-size: 30px">Algorithm Demo</p>
         </div>  
@@ -40,7 +41,7 @@
             <div class="sidebar">  
                 <ul>
                     <li>
-                        <a href="/pic" class="nav-header" target="blank"> 
+                        <a href="#" class="nav-header" target="blank"> 
                             <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
                             <span><b>个人惯用语分析</b></span>
                         </a>
@@ -80,18 +81,63 @@
 
 
             <!-- 中间区域右上部分 -->
-            <div id="right-top">  
-                {% block head %}    
-                {% endblock %}
-            </div>
+          <div id="right-top">  
+                <!-- {% block head %} -->
+                <p class="right-title">群体惯用语分析</p>  
+                <!-- {% endblock %} -->
+          </div>
 
             <!-- 中间区域右下结果显示部分 -->
             <div id="right-bottom">  
                
-                {% block content %}   
-                {% endblock %}
+                <!-- {% block content %}    -->
+              <ul class="nav nav-tabs" style="font-weight: bold;">
+                <li class="active"><a href="#inputWords" data-toggle="tab">关键词</a></li>
+                <li class=""><a href="#inputTels" data-toggle="tab">电话号码</a></li>
+              </ul>
+
+              <div id="myTabContent" class="tab-content" style="margin: 10px">
+
+                <div class="tab-pane active in" id="inputWords">
+
+                  <div class="in-row">
+
+                    <div style="width: auto;margin:5px">
+                      <label style="margin-left: 130px">请输入/导入要分析的关键词</label>
+                      <br />
+                      <textarea id="inputwords-form" placeholder= "    输入单个或多个关键词组，以括号和逗号分隔，如（我们，他们）（它们，她们）,输入的括号及逗号均为中文字符，括号中的关键词逻辑关系为“与”，括号与括号间关键词的逻辑关系为“或”。请务必按标准输入,非法字符将无法输入！"></textarea>
+                    </div>
+
+                    <div style="width: auto;margin:5px">
+                      <button id="import-words-bnt" class="btn btn-default" style="margin-top: 140px;font-size: 16px">本地导入</button><br/>
+                      <button id="words-submit-bnt" class="btn btn-primary" style="margin-top: 15px;font-size: 16px">确认提交</button>
+                      <input type="file" id="select-words-file" style="display:none">
+                    </div>
+                        
+                  </div>
+                </div>
+
+                <div class="tab-pane fade" id="inputTels">
+                  <div class="in-row">
+
+                    <div style="width: auto;margin:5px">
+                        <label style="margin-left: 130px">请输入/导入要分析的号码</label>
+                        <br />
+                        <textarea id="inputtels-form" placeholder= "    输入多个电话号码，以英文符号逗号分隔。请务必按标准输入,非法字符将无法输入！"></textarea>
+                    </div>
+
+                    <div style="width: auto;margin:5px">
+                      <button id="import-tels-bnt" class="btn btn-default" style="margin-top: 140px;font-size: 16px">本地导入</button><br/>
+                      <button id="tels-submit-bnt" class="btn btn-primary" style="margin-top: 15px;font-size: 16px">确认提交</button>
+                      <input type="file" id="select-tels-file" style="display:none">
+                    </div>
+                        
+                  </div>
+                </div>
+            </div>    
+                <!-- {% endblock %} -->
                 
-            </div>  
+          </div>  
 
         <!-- 页脚 -->
         <footer>

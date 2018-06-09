@@ -3,9 +3,10 @@
 <head>
 <meta charset="utf-8"> 
 <title>demo</title>
+<link href="../static/css/theme.css" rel="stylesheet" />
 <link href="../static/css/user.css" rel="stylesheet" type="text/css" />
 <link href="../static/bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet"/>
-<link href="../static/bootstrap-3.3.7-dist/css/bootstrap-theme.css" rel="stylesheet"/>
+<!-- <link href="../static/bootstrap-3.3.7-dist/css/bootstrap-theme.css" rel="stylesheet"/> -->
 <!-- 引入bootstrap-table样式 -->
 <link href="../static/bootstrap_table1.11.1/bootstrap-table.css" rel="stylesheet">
 
@@ -21,6 +22,7 @@
     <!-- 引入中文语言包 -->
     <script src="../static/bootstrap_table1.11.1/bootstrap-table-zh-CN.js"></script>
     <script type="text/javascript" src="../static/js/table.js"></script>
+    <script type="text/javascript" src="../static/js/test.js"></script>
     <script type="text/javascript" src="../static/js/gias.js"></script>
     {% block modal %}    
     {% endblock %} 
@@ -34,6 +36,7 @@
         <!-- 中间区域代码 -->
         <div id="middle">  
             <!-- 侧边栏  -->
+            <!-- 侧边栏  -->
             <div class="sidebar">  
                 <ul>
                     <li>
@@ -43,36 +46,47 @@
                         </a>
                     </li>
                     <li>
-                        <a href="/gic" class="nav-header" target="blank"> 
+                        <a href="#" class="nav-header" target="blank"> 
                             <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
                             <span><b>群体惯用语分析</b></span>
-                            <span class="label-alarm"></span>
+                            <span id="gic-alarm" class="label-alarm"></span>
                         </a>
                     </li>
                     <li>
-                        <a href="/gcc" class="nav-header" target="blank"> 
+                        <a id="gcc" href="#" class="nav-header" target="blank"> 
                             <span class="glyphicon glyphicon-link" aria-hidden="true"></span>
                             <span><b>群体聚类及惯用语分析</b></span>
-                            <span class="label-alarm"></span>
+                            <span id="gcc-alarm" class="label-alarm"></span>
                         </a>
                     </li>
                     <li>
-                        <a href="home.html" class="nav-header" target="blank"> 
-                            <span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>
-                            <span><b>用户指南</b></span>
+                        <a id="rcc" href="#" class="nav-header" target="blank"> 
+                            <span class="glyphicon glyphicon-pawn" aria-hidden="true"></span>
+                            <span><b>宗教信仰分析</b></span>
+                            <span id="rcc-alarm" class="label-alarm"></span>
                         </a>
                     </li>
+                    <li>
+                        <a href="#" class="nav-header" target="blank"> 
+                            <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+                            
+                            <span><b>用户指南</b></span>
+                            <!-- <span class="badge">14</span> -->
+                        </a>
+                    </li>
+                    
                 </ul>  
             </div>  
 
+
             <!-- 中间区域右上部分 -->
-        	<div class="right-top">  
+        	<div id="right-top">  
                 {% block head %}	
                 {% endblock %}
       		</div>
 
             <!-- 中间区域右下结果显示部分 -->
-            <div class="right-bottom">  
+            <div id="right-bottom">  
                
                 {% block content %}   
                 {% endblock %}
@@ -80,9 +94,9 @@
             </div>  
 
         <!-- 页脚 -->
-        <!-- </div>  
-            <div id="footer" style="text-align:right;">Copyright © synway</div> 
-        </div>  --> 
+        <footer>
+            <p style="float: right;">Copyright © synway</p>
+        </footer> 
         </div>
     </div>
 </body>
