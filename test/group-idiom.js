@@ -9,12 +9,14 @@ $(document).ready(function() {
 
     $("#import-tels-bnt").click(chooseTelFile);//导入号码文件按钮
     $("#import-words-bnt").click(chooseWordFile);//导入关键词文件按钮
-    $("#select-words-file").change(checkWordFile);//限制txt文件导入
-    $("#select-tels-file").change(checkTelFile);
+    $("#select-words-file").change(checkWordFile);//限制关键词文件导入
+    $("#select-tels-file").change(checkTelFile);//限制电话号码文件导入
+    $("#clear-words-bnt").click(clearWordContent);//清除已输入关键词内容
+    $("#clear-tels-bnt").click(clearTelContent);//清除已输入号码内容
     
-    // $("#words-submit-bnt")
-    // $("#tels-submit-bnt")
-
+    $("#words-submit-bnt").click(confirmSubmit);
+    $("#tels-submit-bnt").click(confirmSubmit);
+    
 });
 
 
@@ -58,8 +60,7 @@ function checkWordFile(){
                     var file = files[0];
                     var reader = new FileReader();//new一个FileReader实例
                     reader.onload = function() {
-                        document.getElementById("inputwords-form").value=this.result;
-                        var content = document.getElementById("inputwords-form").value.replace(/[^\u4E00-\u9FA5^\，^\（^\）]/g,'');
+                        var content = this.result.replace(/[^\u4E00-\u9FA5^\，^\（^\）]/g,'');
                         if (content == '')
                         {
                             alert("文件内容不符合要求，请重新选择文件！");
@@ -73,21 +74,24 @@ function checkWordFile(){
                     reader.readAsText(file);
         
                 }
-
                 else{
                     alert("文件为空，请重新输入！");
                     
                     }
+                this.value='';
                 
 
             } 
             else {  
                 alert('请选择txt文件!'); 
+                this.value='';
                 
                 } 
 
-            this.value=''; 
+             
     }  
+
+
 
 //判断号码文件类型，限制输入为txt文件，并过滤无效字符
 function checkTelFile(){  
@@ -98,49 +102,81 @@ function checkTelFile(){
                     var file = files[0];
                     var reader = new FileReader();//new一个FileReader实例
                     reader.onload = function() {
-                        this.result=this.result.replace(/[^\d^\,]/g,'');
-                        document.getElementById("inputtels-form").value=this.result;
-
-                        this.value='';//读取文件后清空选择文件控件的值
-                        };              
+                        var content = this.result.replace(/[^\d^\,]/g,'');
+                        if (content == '')
+                        {
+                            alert("文件内容不符合要求，请重新选择文件！");
+                            document.getElementById("inputtels-form").value='';
+                        }
+                        else{
+                            document.getElementById("inputtels-form").value = content;
+                        }          
+                        
+                    };              
                     reader.readAsText(file);
         
                 }
-
                 else{
                     alert("文件为空，请重新输入！");
-                    this.value='';
+                    
                     }
+                this.value='';
                 
+
             } 
             else {  
                 alert('请选择txt文件!'); 
                 this.value='';
-                }  
+                
+                } 
+             
     }  
 
-//用户确认输入文件并返回文件内容，若为空则重新选择
-function confirmImportFile(){
-    $('#confirm-import-modal').modal('hide');
-    var files=document.getElementById("select-file").files;
-    if (files.length) {
-        var file = files[0];
-        var reader = new FileReader();//new一个FileReader实例
-        reader.onload = function() {
-            document.getElementById("filepath").value=this.result;
-            $('#result').bootstrapTable('refresh', { pageNumber: 1 });
-            document.getElementById("filepath").value='';
-            document.getElementById("select-file").value='';
-        };              
-        reader.readAsText(file);
-        
-    }
+//清除已输入的关键词内容
+function clearTelContent(){
+    document.getElementById("inputtels-form").value='';
 
-    else{
-        alert("文件为空，请重新输入！");
-        document.getElementById("select-file").value='';
-    }
 }
+
+
+//清除已输入的电话号码
+function clearWordContent(){
+    document.getElementById("inputwords-form").value='';
+}
+
+
+//确认提交任务
+function confirmSubmit(){
+    $('#confirm-submit-modal').modal('show');
+    var trHTML = "<tr><td>...</td><td>...</td><td>...</td></tr>";
+    $("#doing-task-tab").append(trHTML);//在table最后面添加一行
+    $("#doing-task-tab tr:eq(2)").after(trHTML); //
+    // if (this.id == words-submit-bnt) {
+
+    // }
+}
+
+
+
+
+
+//页面加载时获取任务数量
+$(function(){
+    var tab1 = document.getElementById("doing-task-tab") ;
+      //表格行数
+    var tab1rows = tab1.rows.length-1 ;
+
+    var tab2 = document.getElementById("done-task-tab") ;
+      //表格行数
+    var tab2rows = tab2.rows.length-1 ;
+
+    $("#doing-task-num").text(tab1rows);
+    $("#done-task-num").text(tab2rows);
+
+});
+
+
+
 
 
 
