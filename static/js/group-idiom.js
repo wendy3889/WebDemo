@@ -14,12 +14,10 @@ $(document).ready(function() {
     $("#clear-words-bnt").click(clearWordContent);//清除已输入关键词内容
     $("#clear-tels-bnt").click(clearTelContent);//清除已输入号码内容
     
-    $("#words-submit-bnt").click(confirmSubmit);
-    $("#tels-submit-bnt").click(confirmSubmit);
+    $("#words-submit-bnt").click(wordSubmit);
+    $("#tels-submit-bnt").click(telSubmit);
     
 });
-
-
 
 
 //限制只能输入中文、括号和逗号
@@ -34,12 +32,6 @@ function limitInputTel(){
     this.value=this.value.replace(/[^\d^\,]/g,'');
 }
 
-// //判断输入的关键词是否标准，并弹出确认框
-// function checkInputWords(){
-//     //标准格式：
-//     $('#confirm-input-modal').modal('show');
-    
-// }
 
 // 选取关键词文件
 function chooseWordFile(){
@@ -132,6 +124,7 @@ function checkTelFile(){
              
     }  
 
+
 //清除已输入的关键词内容
 function clearTelContent(){
     document.getElementById("inputtels-form").value='';
@@ -146,16 +139,51 @@ function clearWordContent(){
 
 
 //确认提交任务
-function confirmSubmit(){
-    $('#confirm-submit-modal').modal('show');
-    var trHTML = "<tr><td>新增</td><td>关键词输入</td><td>...</td></tr>";
-    $("#doing-task-tab").append(trHTML);//在table最后面添加一行
-    //$("#doing-task-tab tr:eq(2)").after(trHTML); //在第2行插入
-    // if (this.id == words-submit-bnt) {
-
-    // }
+function wordSubmit(){
+   var content = document.getElementById("inputwords-form").value;
+   if (content == '') {
+        alert("未输入任何关键词，无法创建任务！请重新添加内容！");
+        } 
+   else {
+        var taskid = Date.parse(new Date());
+        var data = {"taskid":taskid,
+                     "words":content};
+        $('#confirm-submit-modal').modal('show');
+        clearWordContent();
+        $.ajax({
+            url: "/word/task/result/"+taskid,
+            type: "POST",
+            data: JSON.stringify(data), // 转化为字符串
+            contentType: 'charset=UTF-8',
+            dataType: 'json',
+                 });
+        }
+       
 }
 
+//确认提交任务
+function telSubmit(){
+   var content = document.getElementById("inputtels-form").value;
+   if (content == '') {
+        alert("未输入任何号码，无法创建任务！请重新添加内容！");
+   } 
+   else {
+        var taskid = Date.parse(new Date());
+        var data ={"taskid":taskid,
+                    "tels":content};
+        $('#confirm-submit-modal').modal('show');
+        clearTelContent();
+        $.ajax({
+            url: "/tel/task/result/"+taskid,
+            type: "POST",
+            data: JSON.stringify(data), // 转化为字符串
+            contentType: 'charset=UTF-8',
+            dataType: 'json',
+                 });
+   }
+   
+    
+}
 
 
 
@@ -164,98 +192,52 @@ function confirmSubmit(){
 $(function(){
     $.ajax({
         url: "/gic/api/doingtask",
-        type: "GET",
+        type: "POST",
+        dataType: 'json',
         success: function (res) {
-            trhtml = ' ';
-             $.each(res,function(i,v){ 
-                trhtml += '<tr><td>'+v.taskID+'</td><td>'+v.taskDesc+'</td><td>'+v.taskTime+'</td></tr>';
-            });
-             console.log(trhtml);
-            $("#doing-task-tab").html(html);
+            var doinghtml = ' '; 
+
+            for(var i=0;i<res.length;i++){ 
+                doinghtml += '<tr><td>'+res[i].taskID+'</td><td>'+res[i].taskDesc+'</td><td>'+res[i].taskTime+'</td></tr>';
+            }
+            
+            $("#doing-task-tbody").html(doinghtml);
+            // 获取任务数量
+            var tab1 = document.getElementById("doing-task-tab") ;
+            var tab1rows = tab1.rows.length-1 ;
+            $("#doing-task-num").text(tab1rows);
             },
-        error: function (data) {
+
+        error: function (res) {
             alert('加载数据失败！'); 
                         }
     });
 
     $.ajax({
         url: "/gic/api/donetask",
-        type: "GET",
+        type: "POST",
+        dataType: 'json',
         success: function (res) {
-            trhtml = ' ';
-             $.each(res,function(i,v){ 
-                trhtml += '<tr><td>'+v.taskID+'</td><td>'+v.taskDesc+'</td><td>'+v.taskTime+'</td></tr>';
-            });
-             
- 
-            // ID=data.taskID;
-            // DESC=data.taskDesc;
-            // STATUS=data.taskStatus;
-            // for (var i=0; i<2; i++){
-            // trhtml += '<tr><td>'+taskID[i]+'</td><td>'+taskDesc[i]+'</td><td>'+taskStatus[i]+'</td></tr>';
-            // }            
-            console.log(trhtml);
-            $("#doing-task-tab").html(html);
+            var donehtml = ' ';
+            
+            for(var i=0;i<res.length;i++){ 
+                donehtml += '<tr><td>'+res[i].taskID+'</td><td>'+res[i].taskDesc+'</td><td>'+res[i].taskStatus+'</td></tr>';
+                }  
+
+            $("#done-task-tbody").html(donehtml);
+
+            // 获取任务数量
+            var tab2 = document.getElementById("done-task-tab") ;
+            var tab2rows = tab2.rows.length-1 ;
+            $("#done-task-num").text(tab2rows);
+            if (tab2rows > 0) {
+                $("#gic-alarm").text("+"+tab2rows);
+                } 
             },
-        error: function (data) {
+
+        error: function (res) {
             alert('加载数据失败！'); 
                         }
     });
 
-    var tab1 = document.getElementById("doing-task-tab") ;
-      //表格行数
-    var tab1rows = tab1.rows.length-1 ;
-
-    var tab2 = document.getElementById("done-task-tab") ;
-      //表格行数
-    var tab2rows = tab2.rows.length-1 ;
-
-    $("#doing-task-num").text(tab1rows);
-    $("#done-task-num").text(tab2rows);
-    if (tab2rows > 0) {
-        $("#gic-alarm").text("+"+tab2rows);
-    } 
-
 });
-
-
-
-
-
-
-// 读取选中的文件，发送json数据到后端
-function startCalculate(files){
-    if (files.length) {
-        var file = files[0];
-        var reader = new FileReader();//new一个FileReader实例
-        reader.onload = function() {
-            var data = this.result;
-            $.ajax({
-                    url: "/demo1/sendfile",
-                    type: "POST",
-                    // data: data,
-                    data: JSON.stringify(data), // 转化为字符串
-                    contentType: '/demo1/sendfile; charset=UTF-8',
-                    dataType: 'json',
-                    success: function (data) {
-                        document.getElementById("filepath-form").value="已导入文件";
-                        html = ' ';
-                        tel=data.input_tels;
-                        txt=data.input_txts;
-                        for (var i=0; i<tel.length; i++){
-                            html += '<tr><td>'+tel[i]+'</td><td>'+txt[i]+'</td></tr>';
-                        }
-                        
-                        console.log(html);
-                        $('#result').html(html);
-                        },
-                    error: function (data) {
-                        alert('加载数据失败！'); 
-                        }
-                 });
-        };
-                 
-        reader.readAsText(file);
-    }
-}
-

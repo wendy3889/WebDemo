@@ -81,22 +81,47 @@ BookInfo = [{
           
     }]
 
+doing=[{"taskID" : 01,
+        "taskDesc":"关键词输入",
+        "taskTime":"2018-6-12"},
+        {"taskID" : 02,
+        "taskDesc":"号码输入",
+        "taskTime":"2018-6-12"}]
+        
+done=[{"taskID" : 01,
+        "taskDesc":"关键词输入",
+        "taskStatus":"查看结果"},
+        {"taskID" : 02,
+        "taskDesc":"号码输入",
+        "taskStatus":"任务出错"}]
+
+
 @app.route('/')
-def hello_world():
+def home(): 
     return render_template('layout.html')
 
 
 @app.route('/pic')
-def dicweb():
+def picweb():
+    return render_template('person_idiom.html')  
     
-    return render_template('person_idiom.html')    
+@app.route('/gic')
+def gicweb():
+    return render_template('group_idiom.html') 
     
-@app.route('/flask/test',methods=['POST'])
+@app.route('/gcc')
+def gccweb():
+    return render_template('group_cluster.html')    
+    
+@app.route('/gic/api/doingtask',methods=['POST'])
 def test():
-    data=request.get_data()
-    print data 
-    return jsonify({"words":data})  
+    return json.dumps(doing)  
     
+
+@app.route('/gic/api/donetask',methods=['POST']) 
+def test2():
+    return json.dumps(done) 
+
 
 @app.route('/gias/pic/result', methods=['POST'])
 def sent_data(): 
@@ -105,7 +130,7 @@ def sent_data():
     pageSize=request.get_json()["pageSize"]
       
     pageIndex=request.get_json()["pageIndex"] 
-
+  
     
     start=(pageIndex-1)*pageSize
     end=pageIndex*pageSize
