@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block modal %} 
-<script type="text/javascript" src="../static/js/group-idiom.js"></script>  
+<script type="text/javascript" src="../static/js/group-cluster.js"></script>  
 <div id="confirm-submit-modal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog">
     <div class="modal-dialog" style="width: 400px; margin: 150px auto;" role="document">
          <div class="modal-content">
@@ -59,7 +59,7 @@
             <div style="width: auto;margin:5px">
                 <label style="margin-left: 130px">请输入/导入要分析的关键词</label>
                       <br />
-                <textarea id="inputwords-form" placeholder= "    输入单个或多个关键词组，以括号和逗号分隔，如（我们，他们）（它们，她们）,输入的括号及逗号均为中文字符，括号中的关键词逻辑关系为“与”，括号与括号间关键词的逻辑关系为“或”。请务必按标准输入,非法字符将无法输入！"></textarea>
+                <textarea id="inputwords-form" placeholder= "    输入单个关键词、多个关键词组或一段文本，以中文字符的逗号分隔。请务必按标准输入,非法字符将自动清空，无法输入！"></textarea>
             </div>
 
             <div style="width: auto;margin:5px">
@@ -121,6 +121,35 @@
             </tbody>
         </table>
     </div>
+
+    <div class="tab-pane fade" id="word-task-result">
+        <br/>
+        <label style="margin-left: 25px">任务<span id="word-taskid-txt"></span>的结果如下：</label>
+        <a href="#done-tasklist" data-toggle="tab"><span>返回列表</span></a><br/>
+        <div class="col-sm-6">
+            <table id="word-cluster-word-tab" style="font-size: 14px">
+            </table>
+        </div>
+        <div class="col-sm-6">
+            <table id="word-cluster-tel-tab" style="font-size: 14px">
+            </table>
+        </div>
+    </div>
+                    
+    <div class="tab-pane fade" id="tel-task-result">
+        <br/>
+        <label style="margin-left: 25px">任务<span id="tel-taskid-txt"></span>的结果如下：</label>
+        <a href="#done-tasklist" data-toggle="tab"><span>返回列表</span></a><br/>
+        <div class="col-sm-6">
+            <table id="tel-cluster-word-tab" style="font-size: 14px">
+            </table>
+        </div>
+        <div class="col-sm-6">
+            <table id="tel-cluster-tel-tab" style="font-size: 14px">
+            </table>
+        </div>
+    </div>
+
 </div>    
 
 {% endblock %}

@@ -20,10 +20,10 @@ $(document).ready(function() {
 });
 
 
-//限制只能输入中文、括号和逗号
+//限制只能输入中文和空格
 function limitInputCh(){
     
-    this.value=this.value.replace(/[^\u4E00-\u9FA5^\，^\（^\）]/g,'');
+    this.value=this.value.replace(/[^\u4E00-\u9FA5^\， ]/g,'');
 
 }
 
@@ -151,7 +151,7 @@ function wordSubmit(){
         $('#confirm-submit-modal').modal('show');
         clearWordContent();
         $.ajax({
-            url: "/gic/word/task",
+            url: "/gcc/word/task",
             type: "POST",
             data: JSON.stringify(data), // 转化为字符串
             contentType: 'charset=UTF-8',
@@ -185,7 +185,7 @@ function telSubmit(){
                     "tels":content};
         clearTelContent();
         $.ajax({
-            url: "/gic/tel/task",
+            url: "/gcc/tel/task",
             type: "POST",
             data: JSON.stringify(data), // 转化为字符串
             contentType: 'charset=UTF-8',
@@ -214,7 +214,7 @@ function telSubmit(){
 //页面加载时获取任务数量
 $(function(){
     $.ajax({
-        url: "/gic/doingtask",
+        url: "/gcc/doingtask",
         type: "POST",
         dataType: 'json',
         success: function (res) {
@@ -232,12 +232,12 @@ $(function(){
             },
 
         error: function (res) {
-            alert('加载任务列表失败！'); 
+            alert('加载数据失败！'); 
                         }
     });
 
     $.ajax({
-        url: "/gic/donetask",
+        url: "/gcc/donetask",
         type: "POST",
         dataType: 'json',
         success: function (res) {
@@ -248,12 +248,12 @@ $(function(){
                 if (res[i].taskStatus=="done") {
                     if (res[i].taskDesc=="关键词输入") {
 
-                        donehtml += '<td><a href="#word-task-result" data-toggle="tab" onclick="wordTaskTab('+res[i].taskID+')">查看结果</a></td></tr>';
+                        donehtml += '<td><a href="#word-task-result" data-toggle="tab" onclick="wordClusterTab('+res[i].taskID+')">查看结果</a></td></tr>';
                     
                     } 
                     else {
 
-                        donehtml += '<td><a href="#tel-task-result" data-toggle="tab" onclick="telTaskTab('+res[i].taskID+')">查看结果</a></td></tr>';
+                        donehtml += '<td><a href="#tel-task-result" data-toggle="tab" onclick="telClusterTab('+res[i].taskID+')">查看结果</a></td></tr>';
 
                     }
                 } 
@@ -263,7 +263,7 @@ $(function(){
 
                 }
                 
-            }  
+            }    
 
             $("#done-task-tbody").html(donehtml);
 
@@ -271,11 +271,13 @@ $(function(){
             var tab2 = document.getElementById("done-task-tab") ;
             var tab2rows = tab2.rows.length-1 ;
             $("#done-task-num").text(tab2rows);
-            
+            // if (tab2rows > 0) {
+            //     $("#gcc-alarm").text("+"+tab2rows);
+            //     } 
             },
 
         error: function (res) {
-            alert('加载任务列表失败！'); 
+            alert('加载数据失败！'); 
                         }
     });
 

@@ -19,8 +19,9 @@ $(document).ready(function() {
     
 });
 
-
-
+function test(params){
+    alert(params);
+}
 
 //限制只能输入中文、括号和逗号
 function limitInputCh(){
@@ -155,70 +156,6 @@ function confirmSubmit(){
 
     // }
 }
-
-
-
-
-
-//页面加载时获取任务数量
-$(function(){
-    $.ajax({
-        url: "/gic/api/doingtask",
-        type: "GET",
-        success: function (res) {
-            trhtml = ' ';
-             $.each(res,function(i,v){ 
-                trhtml += '<tr><td>'+v.taskID+'</td><td>'+v.taskDesc+'</td><td>'+v.taskTime+'</td></tr>';
-            });
-             console.log(trhtml);
-            $("#doing-task-tab").html(html);
-            },
-        error: function (data) {
-            alert('加载数据失败！'); 
-                        }
-    });
-
-    $.ajax({
-        url: "/gic/api/donetask",
-        type: "GET",
-        success: function (res) {
-            trhtml = ' ';
-             $.each(res,function(i,v){ 
-                trhtml += '<tr><td>'+v.taskID+'</td><td>'+v.taskDesc+'</td><td>'+v.taskTime+'</td></tr>';
-            });
-             
- 
-            // ID=data.taskID;
-            // DESC=data.taskDesc;
-            // STATUS=data.taskStatus;
-            // for (var i=0; i<2; i++){
-            // trhtml += '<tr><td>'+taskID[i]+'</td><td>'+taskDesc[i]+'</td><td>'+taskStatus[i]+'</td></tr>';
-            // }            
-            console.log(trhtml);
-            $("#doing-task-tab").html(html);
-            },
-        error: function (data) {
-            alert('加载数据失败！'); 
-                        }
-    });
-
-    var tab1 = document.getElementById("doing-task-tab") ;
-      //表格行数
-    var tab1rows = tab1.rows.length-1 ;
-
-    var tab2 = document.getElementById("done-task-tab") ;
-      //表格行数
-    var tab2rows = tab2.rows.length-1 ;
-
-    $("#doing-task-num").text(tab1rows);
-    $("#done-task-num").text(tab2rows);
-    if (tab2rows > 0) {
-        $("#gic-alarm").text("+"+tab2rows);
-    } 
-
-});
-
-
 
 
 

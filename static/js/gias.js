@@ -11,6 +11,24 @@ $(document).ready(function() {
 });
 
 
+$(function(){
+    $.ajax({
+        url: "/layout/donetask",
+        type: "GET",
+        dataType: 'json',
+        success: function (res) {
+            
+            $("#gic-alarm").text(res.gic_done_num);
+            $("#gcc-alarm").text(res.gcc_done_num);
+            $("#ric-alarm").text(res.ric_done_num);
+            },
+
+        error: function (res) {
+            alert('加载任务数量失败！'); 
+                        }
+    });
+});
+
 // 选取文件
 function chooseFile(){
     document.getElementById("select-file").click();
