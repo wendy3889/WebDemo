@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"> 
+<title>demo</title>
+<link href="static/css/theme.css" rel="stylesheet" />
+<link href="static/css/user.css" rel="stylesheet" type="text/css" />
+<link href="static/bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet"/>
+<link href="favicon.ico" rel="shortcut icon">
+<!-- 引入bootstrap-table样式 -->
+<link href="static/bootstrap_table1.11.1/bootstrap-table.css" rel="stylesheet">
+
+</head> 
+<body style="font-family:monospace;font-size: 16px">  
+    <!-- jquery -->
+    <script src="static/js/jquery-2.1.4.min.js"></script>
+    <script src="static/js/popper.js"></script>
+    <script src="static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    
+    <!-- bootstrap-table.min.js -->
+    <script src="static/bootstrap_table1.11.1/bootstrap-table.js"></script>
+    <!-- 引入中文语言包 -->
+    <script src="static/bootstrap_table1.11.1/bootstrap-table-zh-CN.js"></script>
+    <script type="text/javascript" src="static/js/table.js"></script>
+    <script type="text/javascript" src="static/js/gias.js"></script>
+    <!-- {% block modal %} -->    
+    <!-- {% endblock %}  -->
+
+    <div>  
+    	<!-- 头部代码 -->
+        <div id="header">  
+            <p style="color:white;font-size: 30px">Algorithm Demo</p>
+        </div>  
+
+        <!-- 中间区域代码 -->
+        <div id="middle">  
+            <!-- 侧边栏  -->
+            <!-- 侧边栏  -->
+            <div class="sidebar">  
+                <ul>
+                    <li>
+                        <a href="person_idiom.html" class="nav-header" target="blank"> 
+                            <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                            <span><b>个人惯用语分析</b></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="group_idiom.html" class="nav-header" target="blank"> 
+                            <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+                            <span><b>群体惯用语分析</b></span>
+                            <span id="gic-alarm" class="label-alarm"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="group_cluster.html" class="nav-header" target="blank"> 
+                            <span class="glyphicon glyphicon-link" aria-hidden="true"></span>
+                            <span><b>群体聚类及惯用语分析</b></span>
+                            <span id="gcc-alarm" class="label-alarm"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-header" target="blank"> 
+                            <span class="glyphicon glyphicon-pawn" aria-hidden="true"></span>
+                            <span><b>宗教信仰分析</b></span>
+                            <span id="ric-alarm" class="label-alarm"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-header" target="blank"> 
+                            <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+                            
+                            <span><b>用户指南</b></span>
+                            <!-- <span class="badge">14</span> -->
+                        </a>
+                    </li>
+                    
+                </ul>  
+            </div>  
+
+
+            <!-- 中间区域右上部分 -->
+        	<div id="right-top">  
+                <!-- {% block head %} -->	
+                <!-- {% endblock %} -->
+      		</div>
+
+            <!-- 中间区域右下结果显示部分 -->
+            <div id="right-bottom">  
+               
+                <!-- {% block content %} -->   
+                <!-- {% endblock %} -->
+                
+            </div>  
+
+        <!-- 页脚 -->
+        <footer>
+            <p style="float: right;">Copyright © synway</p>
+        </footer> 
+        </div>
+    </div>
+</body>
+</html>

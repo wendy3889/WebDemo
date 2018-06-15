@@ -224,7 +224,7 @@ ul {
     background-color: #5bc0de;
 }
 
-.pull-right{
+.pull-right {
     position: absolute;
     right: 0;
     left: auto;
@@ -233,14 +233,6 @@ ul {
 
 }
 
-.pull-left{
-    position: relative;
-    right: auto;
-    left: 0;
-    float：right
-    margin-left: 5px;
-    
 
-}
 
 

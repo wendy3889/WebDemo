@@ -14,7 +14,7 @@ $(document).ready(function () {
         showRefresh: false, //是否显示刷新按钮
         pageNumber: 1,//如果设置了分页，首页页码  
         showPaginationSwitch:true,//是否显示 数据条数选择框  
-        pageSize: 2,//如果设置了分页，页面数据条数  
+        pageSize: 10,//如果设置了分页，页面数据条数  
         pageList: [5, 10, 20, 40],  //如果设置了分页，设置可供选择的页面数据条数。设置为All 则显示所有记录。  
         paginationPreText: '上一页',//指定分页条中上一页按钮的图标或文字  
         paginationNextText: '下一页',//指定分页条中下一页按钮的图标或文字  
@@ -81,7 +81,7 @@ function wordTaskTab(taskid) {
         showToggle: false,//是否显示 切换试图（table/card）按钮 
         pageNumber: 1,//如果设置了分页，首页页码  
         showPaginationSwitch:false,//是否显示分页隐藏控件  
-        pageSize: 2,//如果设置了分页，页面数据条数  
+        pageSize: 10,//如果设置了分页，页面数据条数  
         pageList: [5, 10, 20, 40],  //如果设置了分页，设置可供选择的页面数据条数。设置为All 则显示所有记录。  
         paginationPreText: '上一页',//指定分页条中上一页按钮的图标或文字  
         paginationNextText: '下一页',//指定分页条中下一页按钮的图标或文字  
@@ -140,7 +140,7 @@ function telTaskTab(taskid) {
         showToggle: false,//是否显示 切换试图（table/card）按钮 
         pageNumber: 1,//如果设置了分页，首页页码  
         showPaginationSwitch:false,//是否显示分页隐藏控件  
-        pageSize: 2,//如果设置了分页，页面数据条数  
+        pageSize: 10,//如果设置了分页，页面数据条数  
         pageList: [5, 10, 20, 40],  //如果设置了分页，设置可供选择的页面数据条数。设置为All 则显示所有记录。  
         paginationPreText: '上一页',//指定分页条中上一页按钮的图标或文字  
         paginationNextText: '下一页',//指定分页条中下一页按钮的图标或文字  
@@ -195,10 +195,10 @@ function wordClusterTab(taskid) {
         showToggle: false,//是否显示 切换试图（table/card）按钮 
         pageNumber: 1,//如果设置了分页，首页页码  
         showPaginationSwitch:false,//是否显示分页隐藏控件  
-        pageSize: 2,//如果设置了分页，页面数据条数  
+        pageSize: 10,//如果设置了分页，页面数据条数  
         pageList: [5, 10, 20, 40],  //如果设置了分页，设置可供选择的页面数据条数。设置为All 则显示所有记录。  
-        paginationPreText: '<',//指定分页条中上一页按钮的图标或文字  
-        paginationNextText: '>',//指定分页条中下一页按钮的图标或文字  
+        paginationPreText: '上一页',//指定分页条中上一页按钮的图标或文字  
+        paginationNextText: '下一页',//指定分页条中下一页按钮的图标或文字  
         singleSelect: false,//设置True 将禁止多选  
         search: false, //显示搜索框  
         data_local: "zh-US",//表格汉化  
@@ -235,10 +235,10 @@ function wordClusterTab(taskid) {
         showToggle: false,//是否显示 切换试图（table/card）按钮 
         pageNumber: 1,//如果设置了分页，首页页码  
         showPaginationSwitch:false,//是否显示分页隐藏控件  
-        pageSize: 2,//如果设置了分页，页面数据条数  
+        pageSize: 10,//如果设置了分页，页面数据条数  
         pageList: [5, 10, 20, 40],  //如果设置了分页，设置可供选择的页面数据条数。设置为All 则显示所有记录。  
-        paginationPreText: '<',//指定分页条中上一页按钮的图标或文字  
-        paginationNextText: '>',//指定分页条中下一页按钮的图标或文字  
+        paginationPreText: '上一页',//指定分页条中上一页按钮的图标或文字  
+        paginationNextText: '下一页',//指定分页条中下一页按钮的图标或文字  
         singleSelect: false,//设置True 将禁止多选  
         search: false, //显示搜索框  
         data_local: "zh-US",//表格汉化  
@@ -288,10 +288,10 @@ function telClusterTab(taskid) {
         showToggle: false,//是否显示 切换试图（table/card）按钮 
         pageNumber: 1,//如果设置了分页，首页页码  
         showPaginationSwitch:false,//是否显示分页隐藏控件  
-        pageSize: 2,//如果设置了分页，页面数据条数  
+        pageSize: 10,//如果设置了分页，页面数据条数  
         pageList: [5, 10, 20, 40],  //如果设置了分页，设置可供选择的页面数据条数。设置为All 则显示所有记录。  
-        paginationPreText: '<',//指定分页条中上一页按钮的图标或文字  
-        paginationNextText: '>',//指定分页条中下一页按钮的图标或文字  
+        paginationPreText: '上一页',//指定分页条中上一页按钮的图标或文字  
+        paginationNextText: '下一页',//指定分页条中下一页按钮的图标或文字  
         singleSelect: false,//设置True 将禁止多选  
         search: false, //显示搜索框  
         data_local: "zh-US",//表格汉化  
@@ -328,10 +328,10 @@ function telClusterTab(taskid) {
         showToggle: false,//是否显示 切换试图（table/card）按钮 
         pageNumber: 1,//如果设置了分页，首页页码  
         showPaginationSwitch:false,//是否显示分页隐藏控件  
-        pageSize: 2,//如果设置了分页，页面数据条数  
+        pageSize: 10,//如果设置了分页，页面数据条数  
         pageList: [5, 10, 20, 40],  //如果设置了分页，设置可供选择的页面数据条数。设置为All 则显示所有记录。  
-        paginationPreText: '<',//指定分页条中上一页按钮的图标或文字  
-        paginationNextText: '>',//指定分页条中下一页按钮的图标或文字  
+        paginationPreText: '上一页',//指定分页条中上一页按钮的图标或文字  
+        paginationNextText: '下一页',//指定分页条中下一页按钮的图标或文字  
         singleSelect: false,//设置True 将禁止多选  
         search: false, //显示搜索框  
         data_local: "zh-US",//表格汉化  
