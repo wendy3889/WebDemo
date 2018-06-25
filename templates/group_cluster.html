@@ -2,6 +2,7 @@
 
 {% block modal %} 
 <script type="text/javascript" src="../static/js/group-cluster.js"></script>  
+<script type="text/javascript" src="../static/js/echarts 4.1.0.js"></script>
 <div id="confirm-submit-modal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog">
     <div class="modal-dialog" style="width: 400px; margin: 150px auto;" role="document">
          <div class="modal-content">
@@ -157,6 +158,13 @@
             <table id="tel-cluster-word-tab" style="font-size: 14px">
             </table>
         </div>
+    </div>
+
+    <div class="tab-pane fade" id="graph">
+        <!-- <br/> -->
+        <a href="#done-tasklist" data-toggle="tab"><span style="float:right">返回列表</span></a>
+        <br/>
+        <div id="graphDom" style="width:950px;height:600px;"></div>
     </div>
 
 </div>    

@@ -151,7 +151,7 @@ function wordSubmit(){
         $('#confirm-submit-modal').modal('show');
         clearWordContent();
         $.ajax({
-            url: "/gic/word/task",
+            url: "/gta/gic/word/task",
             type: "POST",
             data: JSON.stringify(data), // 转化为字符串
             contentType: 'charset=UTF-8',
@@ -185,7 +185,7 @@ function telSubmit(){
                     "tels":content};
         clearTelContent();
         $.ajax({
-            url: "/gic/tel/task",
+            url: "/gta/gic/tel/task",
             type: "POST",
             data: JSON.stringify(data), // 转化为字符串
             contentType: 'charset=UTF-8',
@@ -214,7 +214,7 @@ function telSubmit(){
 //页面加载时获取任务数量
 $(function(){
     $.ajax({
-        url: "/gic/doingtask",
+        url: "/gta/gic/doingtask",
         type: "POST",
         dataType: 'json',
         success: function (res) {
@@ -237,7 +237,7 @@ $(function(){
     });
 
     $.ajax({
-        url: "/gic/donetask",
+        url: "/gta/gic/donetask",
         type: "POST",
         dataType: 'json',
         success: function (res) {

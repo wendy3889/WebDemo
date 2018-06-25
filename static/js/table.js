@@ -1,6 +1,6 @@
 $(document).ready(function () {  
     $('#result').bootstrapTable({
-        url: '/gias/pic/result',  
+        url: '/gta/pic/result',  
         method: 'post',  
         //dataType: "json", 
         queryParamsType: '',              //默认值为 'limit' ,在默认情况下 
@@ -69,7 +69,7 @@ $(document).ready(function () {
 // 群体惯用语分析结果表
 function wordTaskTab(taskid) {  
     $('#word-task-result-tab').bootstrapTable({
-        url: '/gic/wordtask/result/'+taskid,  
+        url: '/gta/gic/wordtask/result/'+taskid,  
         method: 'post',  
         //dataType: "json", 
         queryParamsType: '',              //默认值为 'limit' ,在默认情况下 
@@ -128,7 +128,7 @@ function wordTaskTab(taskid) {
 
 function telTaskTab(taskid) {  
     $('#tel-task-result-tab').bootstrapTable({
-        url: '/gic/teltask/result/'+taskid,  
+        url: '/gta/gic/teltask/result/'+taskid,  
         method: 'post',  
         //dataType: "json", 
         queryParamsType: '',              //默认值为 'limit' ,在默认情况下 
@@ -183,7 +183,7 @@ function telTaskTab(taskid) {
 // 群体聚类及惯用语分析结果表
 function wordClusterTab(taskid) {  
     $('#word-cluster-tel-tab').bootstrapTable({
-        url: '/gcc/wordtask/result/tel/'+taskid,  
+        url: '/gta/gcc/wordtask/result/tel/'+taskid,  
         method: 'post',  
         //dataType: "json", 
         queryParamsType: '',              //默认值为 'limit' ,在默认情况下 
@@ -223,7 +223,7 @@ function wordClusterTab(taskid) {
     }); 
 
     $('#word-cluster-word-tab').bootstrapTable({
-        url: '/gcc/wordtask/result/word/'+taskid,  
+        url: '/gta/gcc/wordtask/result/word/'+taskid,  
         method: 'post',  
         //dataType: "json", 
         queryParamsType: '',              //默认值为 'limit' ,在默认情况下 
@@ -256,7 +256,18 @@ function wordClusterTab(taskid) {
                 title: '关键词组',  
                 field: 'words',  
                 align: 'left'  
-            } 
+            },
+            {  
+                title: '可视化',  
+                field: 'graph',
+                //width: 60,//宽度   
+                align: 'center',
+                formatter:function(value,row,index){
+                        var wordsId = row.ID;
+                        //var myGraphurl = "/gta/gcc/wordtask/result/word/"+taskid+"/"+wordsId;
+                        return '<a href="#graph" data-toggle="tab" onclick="showGraph('+taskid+','+wordsId+')">查看节点图</a>';
+                        }  
+            }
             
         ]  
 
@@ -276,7 +287,7 @@ function wordClusterTab(taskid) {
 
 function telClusterTab(taskid) {  
     $('#tel-cluster-tel-tab').bootstrapTable({
-        url: '/gcc/teltask/result/tel/'+taskid,  
+        url: '/gta/gcc/teltask/result/tel/'+taskid,  
         method: 'post',  
         //dataType: "json", 
         queryParamsType: '',              //默认值为 'limit' ,在默认情况下 
@@ -316,7 +327,7 @@ function telClusterTab(taskid) {
     }); 
 
     $('#tel-cluster-word-tab').bootstrapTable({
-        url: '/gcc/teltask/result/word/'+taskid,  
+        url: '/gta/gcc/teltask/result/word/'+taskid,  
         method: 'post',  
         //dataType: "json", 
         queryParamsType: '',              //默认值为 'limit' ,在默认情况下 
@@ -349,7 +360,18 @@ function telClusterTab(taskid) {
                 title: '关键词组',  
                 field: 'words',  
                 align: 'left'  
-            } 
+            },
+            {  
+                title: '可视化',  
+                field: 'graph',
+                //width: 60,//宽度   
+                align: 'center',
+                formatter:function(value,row,index){
+                        var wordsId = row.ID;
+                        //var myGraphurl = '/gta/gcc/teltask/result/tel/'+taskid+''+wordsId; 
+                        return '<a href="#graph" data-toggle="tab" onclick="showGraph('+taskid+','+wordsId+')">查看节点图</a>';
+                        } 
+            }  
             
         ]  
 

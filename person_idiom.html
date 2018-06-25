@@ -13,156 +13,155 @@
 </head> 
 <body style="font-family:monospace;font-size: 16px">  
     <!-- jquery -->
-    <script src="static/js/jquery-2.1.4.min.js"></script>
-    <script src="static/js/popper.js"></script>
-    <script src="static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+  <script src="static/js/jquery-2.1.4.min.js"></script>
+  <script src="static/js/popper.js"></script>
+  <script src="static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
     
     <!-- bootstrap-table.min.js -->
-    <script src="static/bootstrap_table1.11.1/bootstrap-table.js"></script>
+  <script src="static/bootstrap_table1.11.1/bootstrap-table.js"></script>
     <!-- 引入中文语言包 -->
-    <script src="static/bootstrap_table1.11.1/bootstrap-table-zh-CN.js"></script>
-    <script type="text/javascript" src="static/js/table.js"></script>
-    <script type="text/javascript" src="static/js/gias.js"></script>
+  <script src="static/bootstrap_table1.11.1/bootstrap-table-zh-CN.js"></script>
+  <script type="text/javascript" src="static/js/table.js"></script>
+  <script type="text/javascript" src="static/js/gias.js"></script>
 
 
 <!-- {% block modal %} -->
 <!-- 模态框需放到最高层级，否则有可能影响显示 -->
 
 <!-- 模态框，确认输入关键词 -->
-<div class="modal fade" id="confirm-input-modal" tabindex="-1" role="dialog" aria-labelledby="inputModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="inputModalLabel">输入确认</h4>
-      </div>
-      <div class="modal-body">
+  <div class="modal fade" id="confirm-input-modal" tabindex="-1" role="dialog" aria-labelledby="inputModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="inputModalLabel">输入确认</h4>
+        </div>
+        <div class="modal-body">
         确认输入完毕，请点击开始分析。若想继续输入，请点击取消。
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-        <button id="confirm-inputwords-bnt" type="button" class="btn btn-primary">开始分析</button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+          <button id="confirm-inputwords-bnt" type="button" class="btn btn-primary">开始分析</button>
+        </div>
       </div>
     </div>
-  </div>
-</div>             
+  </div>             
 
 
 <!-- 模态框，确认导入的电话号码 -->
-<div class="modal fade" id="confirm-import-modal" tabindex="-1" role="dialog" aria-labelledby="importModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="importModalLabel">导入号码确认</h4>
-      </div>
-      <div class="modal-body">
+  <div class="modal fade" id="confirm-import-modal" tabindex="-1" role="dialog" aria-labelledby="importModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="importModalLabel">导入号码确认</h4>
+        </div>
+        <div class="modal-body">
         请确认导入文件是否正确，若正确，请点击开始分析。若想重新选择，请点击取消。
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-        <button id="confirm-importfile-bnt" type="button" class="btn btn-primary">开始分析</button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+          <button id="confirm-importfile-bnt" type="button" class="btn btn-primary">开始分析</button>
+        </div>
       </div>
     </div>
-  </div>
-</div>         
+  </div>         
 
 <!-- {% endblock %} -->
 
 <!-- {% block head %} -->
-<div>  
+  <div>  
       <!-- 头部代码 -->
-        <div id="header">  
-            <p style="color:white;font-size: 30px">Algorithm Demo</p>
-        </div>  
+    <div id="header">  
+      <p style="color:white;font-size: 30px">Algorithm Demo</p>
+    </div>  
 
         <!-- 中间区域代码 -->
-        <div id="middle">  
+    <div id="middle">  
+          
             <!-- 侧边栏  -->
-            <!-- 侧边栏  -->
-            <div class="sidebar">  
-                <ul>
-                    <li>
-                        <a href="person_idiom.html" class="nav-header" target="blank"> 
-                            <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                            <span><b>个人惯用语分析</b></span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="group_idiom.html" class="nav-header" target="blank"> 
-                            <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
-                            <span><b>群体惯用语分析</b></span>
-                            <span id="gic-alarm" class="label-alarm"></span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="group_cluster.html" class="nav-header" target="blank"> 
-                            <span class="glyphicon glyphicon-link" aria-hidden="true"></span>
-                            <span><b>群体聚类及惯用语分析</b></span>
-                            <span id="gcc-alarm" class="label-alarm"></span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="nav-header" target="blank"> 
-                            <span class="glyphicon glyphicon-pawn" aria-hidden="true"></span>
-                            <span><b>宗教信仰分析</b></span>
-                            <span id="ric-alarm" class="label-alarm"></span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="nav-header" target="blank"> 
-                            <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+      <div class="sidebar">  
+        <ul>
+          <li>
+            <a href="person_idiom.html" class="nav-header" target="blank"> 
+              <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+              <span><b>个人惯用语分析</b></span>
+            </a>
+          </li>
+          <li>
+            <a href="group_idiom.html" class="nav-header" target="blank"> 
+              <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+              <span><b>群体惯用语分析</b></span>
+              <span id="gic-alarm" class="label-alarm"></span>
+            </a>
+          </li>
+          <li>
+            <a href="group_cluster.html" class="nav-header" target="blank"> 
+              <span class="glyphicon glyphicon-link" aria-hidden="true"></span>
+              <span><b>群体聚类及惯用语分析</b></span>
+              <span id="gcc-alarm" class="label-alarm"></span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="nav-header" target="blank"> 
+              <span class="glyphicon glyphicon-pawn" aria-hidden="true"></span>
+              <span><b>宗教信仰分析</b></span>
+              <span id="ric-alarm" class="label-alarm"></span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="nav-header" target="blank"> 
+              <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
                             
-                            <span><b>用户指南</b></span>
-                            <!-- <span class="badge">14</span> -->
-                        </a>
-                    </li>
+              <span><b>用户指南</b></span>
+              <!-- <span class="badge">14</span> -->
+            </a>
+          </li>
                     
-                </ul>  
-            </div>  
+        </ul>  
+      </div>  
 
 
             <!-- 中间区域右上部分 -->
-          <div id="right-top">  
+      <div id="right-top">  
 <!-- 导入js函数 -->
-<br />                
-<div class="in-row">
-  <div class="col-sm-8">
-    <!-- <label for="inputwords" class="col-sm-2 col-form-label">关键词</label> -->
-    <input id="inputwords-form" style="height: 40px;font-size: 16px" class="form-control" data-toggle="popover" data-container="body"  data-placement="bottom" title="输入提示" data-content="输入的括号及逗号均为中文字符，括号中的关键词逻辑关系为“与”，括号与括号间关键词的逻辑关系为“或”。请务必按标准输入！" placeholder="输入关键词，以括号和逗号分隔，如（我们，他们）（它们，她们）"> 
-  </div> 
-  <div class="col-sm-3" style="padding-left: 0">
-        <input id="filepath" class="form-control" style="height: 40px;font-size: 16px" placeholder="请选择txt文件导入号码">
-  </div>
-  <div class="col-sm-1" style="padding-left: 0;padding-right: 15px">
-        <div class="dropdown">
-          <button id="import-tel-bnt" style="height: 40px;font-size: 16px" type="button" class="btn btn-secondary">导入</button>
-          <div class="dropdown-content">
+        <br />                
+        <div class="in-row">
+          <div class="col-sm-8">
+            <input id="inputwords-form" style="height: 40px;font-size: 16px" class="form-control" data-toggle="popover" data-container="body"  data-placement="bottom" title="输入提示" data-content="输入的括号及逗号均为中文字符，括号中的关键词逻辑关系为“与”，括号与括号间关键词的逻辑关系为“或”。请务必按标准输入！" placeholder="输入关键词，以括号和逗号分隔，如（我们，他们）（它们，她们）"> 
+          </div> 
+          <div class="col-sm-3" style="padding-left: 0">
+            <input id="filepath" class="form-control" style="height: 40px;font-size: 16px" placeholder="请选择txt文件导入号码">
+          </div>
+          <div class="col-sm-1" style="padding-left: 0;padding-right: 15px">
+            <div class="dropdown">
+              <button id="import-tel-bnt" style="height: 40px;font-size: 16px" type="button" class="btn btn-secondary">导入</button>
+              <div class="dropdown-content">
                 <input type="file" id="select-file" style="display:none">
-          </div>                      
+              </div>                      
+            </div>
+          </div>
         </div>
-  </div>
-</div>
-</div>
+      </div>
 <!-- {% endblock %} -->
 
 <!-- {% block content %}   -->
 <!-- 中间区域右下结果显示部分 -->
-            <div id="right-bottom"> 
+      <div id="right-bottom"> 
 <!-- 导入bootstrap table设置 -->
-<script type="text/javascript" src="static/js/table.js"></script>
-    <div class="panel">
-        <div class="panel-heading"></div>                    
-        <table id="result"></table>
-    </div>
+        <script type="text/javascript" src="static/js/table.js"></script>
+        <div class="panel">
+          <div class="panel-heading"></div>                    
+          <table id="result"></table>
+        </div>
 <!-- {% endblock %} -->
-</div>  
+      </div>  
 
         <!-- 页脚 -->
-        <footer>
-            <p style="float: right;">Copyright © synway</p>
-        </footer> 
-        </div>
+      <footer>
+        <p style="float: right;">Copyright © synway</p>
+      </footer> 
     </div>
+  </div>
 </body>
 </html>

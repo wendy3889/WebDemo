@@ -147,11 +147,19 @@ tel1=[{
                    ]
 
 
+def colorTreat(weigt):
+    #以关键词节点颜色为基准渐变
+    rgb=[41,131,141]
+    #a表示不透明度
+    a=float(weigt)*2
+    str='rgba(%d,%d,%d,%f)'%(rgb[0],rgb[1],rgb[2],a)
+    return str
+
 @app.route('/')
 def home(): 
     return render_template('layout.html')
 
-@app.route('/layout/donetask')
+@app.route('/gta/home/donetask')
 def get_done_num(): 
     
     return json.dumps({"gic_done_num":"+1","gcc_done_num":"+2","ric_done_num":"+2"})
@@ -169,41 +177,41 @@ def gicweb():
 def gccweb():
     return render_template('group_cluster.html')    
     
-@app.route('/gic/doingtask',methods=['POST'])
+@app.route('/gta/gic/doingtask',methods=['POST'])
 def gic_doingtask():
     return json.dumps(doing)  
     
 
-@app.route('/gic/donetask',methods=['POST']) 
+@app.route('/gta/gic/donetask',methods=['POST']) 
 def gic_donetask():
     return json.dumps(done) 
     
-@app.route('/gcc/doingtask',methods=['POST'])
+@app.route('/gta/gcc/doingtask',methods=['POST'])
 def gcc_doingtask():
     return json.dumps(doing)      
 
-@app.route('/gcc/donetask',methods=['POST']) 
+@app.route('/gta/gcc/donetask',methods=['POST']) 
 def gcc_donetask():
     return json.dumps(done) 
     
     
-@app.route('/gic/word/task',methods=['POST']) 
+@app.route('/gta/gic/word/task',methods=['POST']) 
 def get_gic_word_task():
     
     return json.dumps({"flag": "success"}) 
     
-@app.route('/gic/tel/task',methods=['POST']) 
+@app.route('/gta/gic/tel/task',methods=['POST']) 
 def get_gic_tel_task():
     
     return json.dumps({"flag": "success"})
     
     
-@app.route('/gcc/word/task',methods=['POST']) 
+@app.route('/gta/gcc/word/task',methods=['POST']) 
 def get_gcc_word_task():
     
     return json.dumps({"flag": "success"}) 
     
-@app.route('/gcc/tel/task',methods=['POST']) 
+@app.route('/gta/gcc/tel/task',methods=['POST']) 
 def get_gcc_tel_task():
     
     return json.dumps({"flag": "success"})
@@ -211,7 +219,7 @@ def get_gcc_tel_task():
 
 
 
-@app.route('/gias/pic/result', methods=['POST'])
+@app.route('/gta/pic/result', methods=['POST'])
 def sent_data(): 
     #tels=request.get_json()["tel"]
     # print tels 
@@ -225,7 +233,7 @@ def sent_data():
     return json.dumps({"total":len(BookInfo),"rows":BookInfo[start:end]}) 
     
 #群体惯用语页面表格    
-@app.route('/gic/teltask/result/133565466', methods=['POST'])
+@app.route('/gta/gic/teltask/result/133565466', methods=['POST'])
 def wordresult(): 
     #tels=request.get_json()["tel"]
     # print tels 
@@ -238,7 +246,7 @@ def wordresult():
     end=pageIndex*pageSize
     return json.dumps({"total":len(telresultarr),"rows":telresultarr[start:end]})
 
-@app.route('/gic/wordtask/result/133565465', methods=['POST'])
+@app.route('/gta/gic/wordtask/result/133565465', methods=['POST'])
 def telresult(): 
     #tels=request.get_json()["tel"]
     # print tels 
@@ -254,7 +262,7 @@ def telresult():
     #return jsonify({'terms':terms})
 
 #群体聚类    
-@app.route('/gcc/wordtask/result/word/133565465', methods=['POST'])
+@app.route('/gta/gcc/wordtask/result/word/133565465', methods=['POST'])
 def gccwordresult1(): 
     #tels=request.get_json()["tel"]
     # print tels 
@@ -267,7 +275,7 @@ def gccwordresult1():
     end=pageIndex*pageSize
     return json.dumps({"total":len(telresultarr),"rows":telresultarr[start:end]})
 
-@app.route('/gcc/wordtask/result/tel/133565465', methods=['POST'])
+@app.route('/gta/gcc/wordtask/result/tel/133565465', methods=['POST'])
 def gccwordresult2(): 
     #tels=request.get_json()["tel"]
     # print tels 
@@ -281,7 +289,7 @@ def gccwordresult2():
     return json.dumps({"total":len(tel1),"rows":tel1[start:end]}) 
     
     
-@app.route('/gcc/teltask/result/tel/133565466', methods=['POST'])
+@app.route('/gta/gcc/teltask/result/tel/133565466', methods=['POST'])
 def gcctelresult1(): 
     #tels=request.get_json()["tel"]
     # print tels 
@@ -294,7 +302,7 @@ def gcctelresult1():
     end=pageIndex*pageSize
     return json.dumps({"total":len(tel1),"rows":tel1[start:end]})
 
-@app.route('/gcc/teltask/result/word/133565466', methods=['POST'])
+@app.route('/gta/gcc/teltask/result/word/133565466', methods=['POST'])
 def gcctelresult2(): 
     #tels=request.get_json()["tel"]
     # print tels 
@@ -306,10 +314,35 @@ def gcctelresult2():
     start=(pageIndex-1)*pageSize
     end=pageIndex*pageSize
     return json.dumps({"total":len(wordresultarr),"rows":wordresultarr[start:end]})
+
+@app.route('/gta/graph/133565465/1',methods=['POST'])
+def graph(): 
+    links=[]
+    nodes=[]
+    nodecp=[]
+    with open(r'D:\wendy\web\myfirstweb\shebo.txt') as f:
+        lines = f.readlines()
+        for line in lines:
+            items=line.split(' ')
+            dic1={"source":items[0],"target":items[1],"value":items[2],\
+            "lineStyle":{"color":colorTreat(items[2]),"width":10*float(items[2])}}
+            links.append(dic1)
+            
+            if items[0] not in nodecp:
+                nodecp.append(items[0])
+                dic2={"name":items[0],"category":"电话号码"}
+                nodes.append(dic2)
+            if items[1] not in nodecp:
+                nodecp.append(items[1])
+                dic3={"name":items[1],"symbolSize": 45,"label":{"show":'true'},"category":"关键词"}
+                nodes.append(dic3) 
+    return json.dumps({"nodes":nodes,"links":links})
+    
+    
     
  
 if __name__ == '__main__':  
        
     #app.config['JSON_AS_ASCII'] = False
-    app.debug=True
-    app.run()
+#    app.debug=True
+    app.run(port='1234')

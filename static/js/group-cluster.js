@@ -151,7 +151,7 @@ function wordSubmit(){
         $('#confirm-submit-modal').modal('show');
         clearWordContent();
         $.ajax({
-            url: "/gcc/word/task",
+            url: "/gta/gcc/word/task",
             type: "POST",
             data: JSON.stringify(data), // 转化为字符串
             contentType: 'charset=UTF-8',
@@ -185,7 +185,7 @@ function telSubmit(){
                     "tels":content};
         clearTelContent();
         $.ajax({
-            url: "/gcc/tel/task",
+            url: "/gta/gcc/tel/task",
             type: "POST",
             data: JSON.stringify(data), // 转化为字符串
             contentType: 'charset=UTF-8',
@@ -208,13 +208,84 @@ function telSubmit(){
     
 }
 
+//画节点图
+function showGraph(taskid,wordsId){
+    var myGraph = echarts.init(document.getElementById('graphDom'));
+    myGraph.showLoading();
+    //设置图初始样式
+    myGraph.setOption({
+        title: {text:'任务'+taskid+'关键词类别'+wordsId+'节点图'},
+        legend: {data:['关键词','电话号码']},
+        series:[{
+            type: 'graph',
+            layout: 'force',
+            force:{
+                initLayout: 'circular',
+                repulsion: 100,
+                edgeLength: [10, 50],
+            },
+            symbol:'circle',
+            symbolSize: 15,
+            roam: true,//是否可放大缩小移位
+            draggable: true,//允许节点拖拽，只在force布局下才有用
+            lineStyle: {
+                        normal: {
+                            width: 3,
+                            curveness: 0.2
 
+                        }
+                    },
+            
+            categories:[{
+                name: '关键词',
+                itemStyle: {
+                    normal: {
+                        color: "#61a0a8",
+                        borderWidth: 1,
+                        borderColor: "#fff"
+                                }
+                            }
+                        },
+            {
+                name: '电话号码',
+                itemStyle: {
+                    normal: {
+                    color: "#d48265",
+                    borderWidth: 1,
+                    borderColor: "#fff"
+                                }
+                            }
+                        }]
+
+        }]
+    });
+    $.ajax({
+        url: '/gta/graph/'+taskid+'/'+wordsId,
+        type: 'post',
+        dataType: 'json',
+        success: function(res){
+            myGraph.hideLoading();
+            myGraph.setOption({
+                series:{
+                    data: res.nodes,
+                    links: res.links,
+                }
+            });
+
+
+
+        },
+        error: function(res){
+            alert('数据接收失败');
+        }
+    });
+}
 
 
 //页面加载时获取任务数量
 $(function(){
     $.ajax({
-        url: "/gcc/doingtask",
+        url: "/gta/gcc/doingtask",
         type: "POST",
         dataType: 'json',
         success: function (res) {
@@ -237,7 +308,7 @@ $(function(){
     });
 
     $.ajax({
-        url: "/gcc/donetask",
+        url: "/gta/gcc/donetask",
         type: "POST",
         dataType: 'json',
         success: function (res) {

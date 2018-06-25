@@ -1,164 +1,248 @@
-{% extends "layout.html" %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"> 
+<title>demo</title>
+<link href="static/css/theme.css" rel="stylesheet" />
+<link href="static/css/user.css" rel="stylesheet" type="text/css" />
+<link href="static/bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet"/>
+<link href="favicon.ico" rel="shortcut icon">
+<!-- 引入bootstrap-table样式 -->
+<link href="static/bootstrap_table1.11.1/bootstrap-table.css" rel="stylesheet">
 
-{% block modal %} 
-<script type="text/javascript" src="../static/js/group-cluster.js"></script>  
-<div id="confirm-submit-modal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog">
-    <div class="modal-dialog" style="width: 400px; margin: 150px auto;" role="document">
-         <div class="modal-content">
-            <div class="modal-header" style="background: #eee;border-radius: 6px;padding: 10px">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <p class="modal-title" style="margin: 0;">温馨提示</p>
-            </div>
-            <div class="modal-body" style="padding: 40px">
-                <h4 style="text-align: center;">任务已提交，请耐心等待！<br/><br/>可在任务列表中查看任务状态。</h4>
-            </div> 
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal --> 
-{% endblock %} 
+</head> 
+<body style="font-family:monospace;font-size: 16px">  
+    <!-- jquery -->
+    <script src="static/js/jquery-2.1.4.min.js"></script>
+    <script src="static/js/popper.js"></script>
+    <script src="static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <!-- bootstrap-table.min.js -->
+    <script src="static/bootstrap_table1.11.1/bootstrap-table.js"></script>
+    <!-- 引入中文语言包 -->
+    <script src="static/bootstrap_table1.11.1/bootstrap-table-zh-CN.js"></script>
+    <script type="text/javascript" src="static/js/table.js"></script>
+    <script type="text/javascript" src="static/js/gias.js"></script>
 
-{% block head %}
+<!-- {% block modal %}  -->
+    <script type="text/javascript" src="static/js/group-cluster.js"></script>  
+    <div id="confirm-submit-modal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog">
+        <div class="modal-dialog" style="width: 400px; margin: 150px auto;" role="document">
+            <div class="modal-content">
+                <div class="modal-header" style="background: #eee;border-radius: 6px;padding: 10px">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <p class="modal-title" style="margin: 0;">温馨提示</p>
+                </div>
+                <div class="modal-body" style="padding: 40px">
+                    <h4 style="text-align: center;">任务已提交，请耐心等待！<br/><br/>可在任务列表中查看任务状态。</h4>
+                </div> 
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal --> 
+<!-- {% endblock %}  -->
 
-<p class="right-title">群体聚类及惯用语分析</p> 
+<!-- {% block head %} -->
+    <div>  
+        <!-- 头部代码 -->
+        <div id="header">  
+            <p style="color:white;font-size: 30px">Algorithm Demo</p>
+        </div>  
 
-{% endblock %}
-          
-
-            
-{% block content %}   
-
-<ul class="nav nav-tabs" style="font-weight: bold;">
-    <li class="active"><a href="#inputWords" data-toggle="tab">关键词</a></li>
-    <li class=""><a href="#inputTels" data-toggle="tab">电话号码</a></li>
-    <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">任务列表<span class="caret"></span></a>
-            <ul class="dropdown-menu" style="font-size: 16px">
-                <li>
-                    <a href="#doing-tasklist" data-toggle="tab">
-                        <span>正在进行</span>
-                        <span id="doing-task-num" class="badge" style="margin-top: 3px;float: right;"></span>
-                    </a>
-                </li>
-                <li role="separator" class="divider"></li>
-                <li>
-                    <a href="#done-tasklist" data-toggle="tab">
-                        <span>已完成</span>
-                        <span id="done-task-num" class="badge" style="margin-top: 3px;float: right;"></span>
-                    </a>
-                </li>
-            </ul>
-    </li>
-</ul>
-
-<div id="myTabContent" class="tab-content" style="margin: 10px">
-
-    <div class="tab-pane active in" id="inputWords">
-
-        <div class="in-row">
-
-            <div style="width: auto;margin:5px">
-                <label style="margin-left: 130px">请输入/导入要分析的关键词</label>
-                      <br />
-                <textarea id="inputwords-form" placeholder= "    输入单个关键词、多个关键词组或一段文本，以中文字符的逗号分隔。请务必按标准输入,非法字符将自动清空，无法输入！"></textarea>
-            </div>
-
-            <div style="width: auto;margin:5px">
-                <button id="import-words-bnt" class="btn btn-default" style="margin-top: 105px;font-size: 16px">本地导入</button><br/>
-                <button id="clear-words-bnt" class="btn btn-sencondry" style="margin-top: 15px;font-size: 16px">清除内容</button><br/>
-                <button id="words-submit-bnt" class="btn btn-primary" style="margin-top: 15px;font-size: 16px">确认提交</button>
-                <input type="file" id="select-words-file" style="display:none">
-            </div>
-                        
-        </div>
-
-    </div>
-
-    <div class="tab-pane fade" id="inputTels">
-        <div class="in-row">
-
-            <div style="width: auto;margin:5px">
-                <label style="margin-left: 130px">请输入/导入要分析的号码</label>
-                        <br />
-                <textarea id="inputtels-form" placeholder= "    输入多个电话号码，以英文符号逗号分隔。请务必按标准输入,非法字符将无法输入！"></textarea>
-            </div>
-
-            <div style="width: auto;margin:5px">
-                <button id="import-tels-bnt" class="btn btn-default" style="margin-top: 105px;font-size: 16px">本地导入</button><br/>
-                <button id="clear-tels-bnt" class="btn btn-sencondry" style="margin-top: 15px;font-size: 16px">清除内容</button><br/>
-                <button id="tels-submit-bnt" class="btn btn-primary" style="margin-top: 15px;font-size: 16px">确认提交</button>
-                <input type="file" id="select-tels-file" style="display:none">
-            </div>
-                        
-        </div>
-    </div>
-
-    <div class="tab-pane fade" id="doing-tasklist">
-        <table id="doing-task-tab" class="table" style="width:60%;margin-top: 30px">
-            <thead>
-            <tr>
-                <th>任务ID</th>
-                <th>任务类别</th>
-                <th>开始时间</th>
-            </tr>
-            </thead>
-            <tbody id="doing-task-tbody">
+        <!-- 中间区域代码 -->
+        <div id="middle">  
+            <!-- 侧边栏  -->
+            <div class="sidebar">  
+                <ul>
+                    <li>
+                        <a href="person_idiom.html" class="nav-header" target="blank"> 
+                            <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                            <span><b>个人惯用语分析</b></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="group_idiom.html" class="nav-header" target="blank"> 
+                            <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+                            <span><b>群体惯用语分析</b></span>
+                            <span id="gic-alarm" class="label-alarm"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="group_cluster.html" class="nav-header" target="blank"> 
+                            <span class="glyphicon glyphicon-link" aria-hidden="true"></span>
+                            <span><b>群体聚类及惯用语分析</b></span>
+                            <span id="gcc-alarm" class="label-alarm"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-header" target="blank"> 
+                            <span class="glyphicon glyphicon-pawn" aria-hidden="true"></span>
+                            <span><b>宗教信仰分析</b></span>
+                            <span id="ric-alarm" class="label-alarm"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-header" target="blank"> 
+                            <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
                             
-            </tbody>
-        </table>
-    </div>
-
-    <div class="tab-pane fade" id="done-tasklist">
-        <table id="done-task-tab" class="table" style="width:60%;margin-top: 30px">
-            <thead>
-                <tr>
-                    <th>任务ID</th>
-                    <th>任务类别</th>
-                    <th>任务状态</th>
-                </tr>
-            </thead>
-            <tbody id="done-task-tbody">
-                        
-            </tbody>
-        </table>
-    </div>
-
-    <div class="tab-pane fade" id="word-task-result">
-        <style type="text/css">
-            .pull-left{
-                        display: none   
-                        }
-        </style>
-
-        <!-- <br/> -->
-        <label style="margin-left: 25px;margin-bottom: 20px">任务<span id="word-taskid-txt"></span>的结果如下：</label>
-        <a href="#done-tasklist" data-toggle="tab"><span>返回列表</span></a>
-        <br/>
-        <div class="col-sm-5">
-            <table id="word-cluster-tel-tab" style="font-size: 14px">
-            </table>
-            
-        </div>
-        <div class="col-sm-7">
-            <table id="word-cluster-word-tab" style="font-size: 14px">
-            </table>
-        </div>
-    </div>
+                            <span><b>用户指南</b></span>
+                            <!-- <span class="badge">14</span> -->
+                        </a>
+                    </li>
                     
-    <div class="tab-pane fade" id="tel-task-result">
+                </ul>  
+            </div>  
+
+
+            <!-- 中间区域右上部分 -->
+            <div id="right-top">  
+                <p class="right-title">群体聚类及惯用语分析</p> 
+                <!-- {% endblock %} -->
+            </div>
+
+            <!-- 中间区域右下结果显示部分 -->
+            <div id="right-bottom">           
+            <!-- {% block content %}    -->
+
+                <ul class="nav nav-tabs" style="font-weight: bold;">
+                    <li class="active"><a href="#inputWords" data-toggle="tab">关键词</a></li>
+                    <li class=""><a href="#inputTels" data-toggle="tab">电话号码</a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">任务列表<span class="caret"></span></a>
+                        <ul class="dropdown-menu" style="font-size: 16px">
+                            <li>
+                                <a href="#doing-tasklist" data-toggle="tab">
+                                <span>正在进行</span>
+                                <span id="doing-task-num" class="badge" style="margin-top: 3px;float: right;"></span>
+                                </a>
+                            </li>
+                            <li role="separator" class="divider"></li>
+                            <li>
+                                <a href="#done-tasklist" data-toggle="tab">
+                                <span>已完成</span>
+                                <span id="done-task-num" class="badge" style="margin-top: 3px;float: right;"></span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <div id="myTabContent" class="tab-content" style="margin: 10px">
+
+                    <div class="tab-pane active in" id="inputWords">
+
+                        <div class="in-row">
+
+                            <div style="width: auto;margin:5px">
+                                <label style="margin-left: 130px">请输入/导入要分析的关键词</label>
+                                <br />
+                                <textarea id="inputwords-form" placeholder= "    输入单个关键词、多个关键词组或一段文本，以中文字符的逗号分隔。请务必按标准输入,非法字符将自动清空，无法输入！"></textarea>
+                            </div>
+
+                            <div style="width: auto;margin:5px">
+                                <button id="import-words-bnt" class="btn btn-default" style="margin-top: 105px;font-size: 16px">本地导入</button><br/>
+                                <button id="clear-words-bnt" class="btn btn-sencondry" style="margin-top: 15px;font-size: 16px">清除内容</button><br/>
+                                <button id="words-submit-bnt" class="btn btn-primary" style="margin-top: 15px;font-size: 16px">确认提交</button>
+                                    <input type="file" id="select-words-file" style="display:none">
+                            </div>
+                        
+                        </div>
+
+                    </div>
+
+                    <div class="tab-pane fade" id="inputTels">
+                        <div class="in-row">
+                            <div style="width: auto;margin:5px">
+                                <label style="margin-left: 130px">请输入/导入要分析的号码</label>
+                                <br />
+                                <textarea id="inputtels-form" placeholder= "    输入多个电话号码，以英文符号逗号分隔。请务必按标准输入,非法字符将无法输入！"></textarea>
+                            </div>
+
+                            <div style="width: auto;margin:5px">
+                                <button id="import-tels-bnt" class="btn btn-default" style="margin-top: 105px;font-size: 16px">本地导入</button><br/>
+                                <button id="clear-tels-bnt" class="btn btn-sencondry" style="margin-top: 15px;font-size: 16px">清除内容</button><br/>
+                                <button id="tels-submit-bnt" class="btn btn-primary" style="margin-top: 15px;font-size: 16px">确认提交</button>
+                                <input type="file" id="select-tels-file" style="display:none">
+                            </div>
+                        
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="doing-tasklist">
+                        <table id="doing-task-tab" class="table" style="width:60%;margin-top: 30px">
+                            <thead>
+                                <tr>
+                                <th>任务ID</th>
+                                <th>任务类别</th>
+                                <th>开始时间</th>
+                                </tr>
+                            </thead>
+                            <tbody id="doing-task-tbody">
+                            
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="tab-pane fade" id="done-tasklist">
+                        <table id="done-task-tab" class="table" style="width:60%;margin-top: 30px">
+                            <thead>
+                                <tr>
+                                <th>任务ID</th>
+                                <th>任务类别</th>
+                                <th>任务状态</th>
+                                </tr>
+                            </thead>
+                            <tbody id="done-task-tbody">
+                        
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="tab-pane fade" id="word-task-result">
+                        <style type="text/css">
+                            .pull-left{
+                            display: none   
+                            }
+                        </style>
+
         <!-- <br/> -->
-        <label style="margin-left: 25px;margin-bottom: 20px">任务<span id="tel-taskid-txt"></span>的结果如下：</label>
-        <a href="#done-tasklist" data-toggle="tab"><span>返回列表</span></a>
-        <br/>
-        <div class="col-sm-4">
-            <table id="tel-cluster-tel-tab" style="font-size: 14px">
-            </table>
-        </div>
-        <div class="col-sm-8">
-            <table id="tel-cluster-word-tab" style="font-size: 14px">
-            </table>
+                        <label style="margin-left: 25px;margin-bottom: 20px">任务<span id="word-taskid-txt"></span>的结果如下：</label>
+                        <a href="#done-tasklist" data-toggle="tab"><span>返回列表</span></a>
+                        <br/>
+                        <div class="col-sm-5">
+                            <table id="word-cluster-tel-tab" style="font-size: 14px">
+                            </table>
+            
+                        </div>
+                        <div class="col-sm-7">
+                            <table id="word-cluster-word-tab" style="font-size: 14px">
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-pane fade" id="tel-task-result">
+        <!-- <br/> -->
+                        <label style="margin-left: 25px;margin-bottom: 20px">任务<span id="tel-taskid-txt"></span>的结果如下：</label>
+                        <a href="#done-tasklist" data-toggle="tab"><span>返回列表</span></a>
+                        <br/>
+                        <div class="col-sm-4">
+                            <table id="tel-cluster-tel-tab" style="font-size: 14px">
+                            </table>
+                        </div>
+                        <div class="col-sm-8">
+                            <table id="tel-cluster-word-tab" style="font-size: 14px">
+                            </table>
+                        </div>
+                    </div>
+
+                </div>    
+
+<!-- {% endblock %} -->
+            </div>  
+
+        <!-- 页脚 -->
+            <footer>
+                <p style="float: right;">Copyright © synway</p>
+            </footer> 
         </div>
     </div>
-
-</div>    
-
-{% endblock %}
+</body>
+</html>
